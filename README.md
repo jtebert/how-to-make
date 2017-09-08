@@ -1,5 +1,5 @@
-# Jekyll Materialize
+# How To Make (almost) Anything
 
-**A jekyll theme using the [Materialize](http://materializecss.com/) library.**
+---
 
-I'm initially desiging this to use for documentation for [How To Make (almost) Anything](http://materializecss.com/)
+This is my website for the Fall 2017 section of [How To Make (almost) Anything](http://fab.cba.mit.edu/classes/863.17/).
