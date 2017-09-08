@@ -1,38 +1,28 @@
-<footer class="site-footer">
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html username=site.github_username %}
-          </li>
-          {% endif %}
-
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html username=site.twitter_username %}
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description }}</p>
-      </div>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">About this Site</h5>
+                <p class="grey-text text-lighten-4">This contains my work for MIT's How To Make (almost) Anything class (MAS.643) for the Fall 2017 semester.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://fab.cba.mit.edu/classes/863.17/"><i class="mdi mdi-link"></i>
+                        Class Homepage</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://juliaebert.com"><i class="mdi mdi-home"></i>
+                        Julia's Homepage</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/jtebert"><i
+                            class="mdi mdi-github-face"></i> Github</a></li>
+                    <li><a class="grey-text text-lighten-3" href="mailto:julia@juliaebert.com"><i
+                            class="mdi mdi-email"></i> Email</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-  </div>
-
+    <div class="footer-copyright">
+        <div class="container">
+            © {{ 'now' | date: "%Y" }} {{ site.author }}
+        </div>
+    </div>
 </footer>

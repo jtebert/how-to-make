@@ -1,53 +1,46 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
-@charset "utf-8";
 
+@charset "UTF-8";
 
+// Colors
+@import "components/color";
 
-// Our variables
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
-$base-font-weight: 400;
-$small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
+// Variables;
+@import "components/variables";
 
-$spacing-unit:     30px;
+// Reset
+@import "components/normalize";
 
-$text-color:       #111;
-$background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
-
-$grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
-
-// Width of the content area
-$content-width:    800px;
-
-$on-palm:          600px;
-$on-laptop:        800px;
-
-
-
-// Use media queries like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
-}
-
-
-
-// Import partials from `sass_dir` (defaults to `_sass`)
-@import
-        "base",
-        "layout",
-        "syntax-highlighting"
-;
+// components
+@import "components/global";
+@import "components/badges";
+@import "components/icons-material-design";
+@import "components/grid";
+@import "components/navbar";
+@import "components/roboto";
+@import "components/typography";
+@import "components/transitions";
+@import "components/cards";
+@import "components/toast";
+@import "components/tabs";
+@import "components/tooltip";
+@import "components/buttons";
+@import "components/dropdown";
+@import "components/waves";
+@import "components/modal";
+@import "components/collapsible";
+@import "components/chips";
+@import "components/materialbox";
+@import "components/forms/forms";
+@import "components/table_of_contents";
+@import "components/sideNav";
+@import "components/preloader";
+@import "components/slider";
+@import "components/carousel";
+@import "components/tapTarget";
+@import "components/pulse";
+@import "components/date_picker/default";
+@import "components/date_picker/default.date";
+@import "components/date_picker/default.time";
+@import "custom";

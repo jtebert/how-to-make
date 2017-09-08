@@ -2,22 +2,55 @@
 layout: default
 ---
 
-<div class="home">
+<div class="parallax-container">
+    <div class="parallax"><img src="{{ "assets/imgs/raspberry-pi.jpg" | prepend: site.baseurl }}"></div>
+</div>
 
-  <h1 class="page-heading">Posts</h1>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+        <h1 class="header center text-secondary-color">{{ site.title }}</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">Some top-level info about the site or yourself. Coloring book magna deserunt venmo hammock artisan single-origin coffee messenger bag irony narwhal forage.</h5>
+        </div>
+        <div class="row center">
+            <a href="{{ "/about" | prepend: site.baseurl }}" id="download-button"
+               class="btn-large waves-effect waves-light">About</a>
+        </div>
+        <br><br>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    </div>
+</div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="container">
+    <div class="row">
+        {% for post in site.posts %}
+        <div class="col s12 m6">
+            <div class="card z-depth-2 hoverable">
+                <div class="card-image">
+                    {% if post.image %}
+                        <img src="{{ post.image | prepend: "assets/" | prepend: site.baseurl }}">
+                    {% else %}
+                    <img src="https://unsplash.it/800/450?blur">
+                    {% endif %}
+                    <span class="card-title">
+                        {% if post.week %}
+                            <b>{{ post.week }}:&nbsp;</b>
+                        {% endif %}
+                        {{ post.title }}
+                    </span>
+                </div>
+                {% if post.excerpt %}
+                <div class="card-content">
+                    {{ post.excerpt }}
+                </div>
+                {% endif %}
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+                <div class="card-action">
+                    <a href="{{ post.url | prepend: site.baseurl }}">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>

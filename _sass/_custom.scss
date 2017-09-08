@@ -1,0 +1,162 @@
+nav .brand-logo {
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.text-primary-color {
+  color: $primary-color;
+}
+
+.text-secondary-color {
+  color: $secondary-color;
+}
+
+.primary-color {
+  background-color: $primary-color;
+}
+
+.secondary-color {
+  background-color: $secondary-color;
+}
+
+code {
+  color: color("blue-grey", "base");
+}
+
+p {
+  line-height: 24px;
+}
+
+.container.narrow {
+  max-width: 1000px;
+}
+
+// Material spec. headers
+
+.post {
+
+  h1, h2, h3, h4, h5, h6 {
+    content: ' ';
+    display: table;
+    clear: both;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 40px;
+    color: $secondary-color;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -.012em;
+    line-height: 32px;
+    color: $secondary-color;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    color: $secondary-color;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  h5 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  h6 {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.011em;
+    line-height: 20px;
+  }
+
+  img.materialboxed {width: 100%;}
+  img:not(.materialboxed) {max-width: 100%;}
+
+  img.small:not(.materialboxed){
+    @media #{$medium-and-up} {max-width: 47%;}}
+  img.small.materialboxed {
+    @media #{$medium-and-up} {
+      width: 47%;
+    }
+  }
+
+  img, iframe, video {
+    &.small {
+      float: left;
+      margin: 0 3% 32px 0;
+      &.right {
+        float: right;
+        margin: 0 0 32px 3%;
+      }
+    }
+  }
+
+  iframe, video {
+    width: 100%;
+    height: auto;
+
+    &.small {
+      width: 47%;
+      height: auto;
+    }
+  }
+}
+
+.post-title {
+  font-weight: 300;
+}
+
+time {
+  color: color("grey", "darken-1");
+  font-weight: 300;
+  font-size: 16px;
+
+}
+
+
+/* Fix list styling because defaults are stupid */
+
+#content ul {
+  &:not(.browser-default) {
+    padding-left: 40px;
+
+    & > li {
+      list-style-type: disc;
+    }
+
+    & ul li {
+      list-style-type: circle;
+    }
+  }
+}
+
+
+/* For sticky footer */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
