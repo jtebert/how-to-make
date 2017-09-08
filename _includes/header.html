@@ -1,16 +1,18 @@
-<nav class="" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="{{ "/" | prepend: site.baseurl }}" class="brand-logo">{{ site.title }}</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="{{ "/" | prepend: site.baseurl }}">Home</a></li>
-            <li><a href="{{ "/about" | prepend: site.baseurl }}">About</a></li>
-            <li><a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS Feed</a></li>
-        </ul>
+<header>
+    <nav class="" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="{{ "/" | prepend: site.baseurl }}" class="brand-logo">{{ site.title }}</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{{ "/" | prepend: site.baseurl }}">Home</a></li>
+                <li><a href="{{ "/about" | prepend: site.baseurl }}">About</a></li>
+                <li><a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS Feed</a></li>
+            </ul>
 
-        <ul id="nav-mobile" class="side-nav">
-            <li><a href="{{ "/" | prepend: site.baseurl }}"><i class="mdi mdi-home"></i> Home</a></li>
-            <li><a href="{{ "/about" | prepend: site.baseurl }}"><i class="mdi mdi-information"></i> About</a></li>
-            <li><a href="{{ "/feed.xml" | prepend: site.baseurl }}"><i class="mdi mdi-rss"></i> RSS Feed</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="{{ "/" | prepend: site.baseurl }}"><i class="mdi mdi-home"></i> Home</a></li>
+                <li><a href="{{ "/about" | prepend: site.baseurl }}"><i class="mdi mdi-information"></i> About</a></li>
+                <li><a href="{{ "/feed.xml" | prepend: site.baseurl }}"><i class="mdi mdi-rss"></i> RSS Feed</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</header>
