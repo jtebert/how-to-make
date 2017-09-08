@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="parallax-container">
-    <div class="parallax"><img src="{{ "assets/imgs/raspberry-pi.jpg" | prepend: site.baseurl }}"></div>
+    <div class="parallax"><img src="{{ "/assets/imgs/raspberry-pi.jpg" | prepend: site.baseurl }}"></div>
 </div>
 
 <div class="section no-pad-bot" id="index-banner">
@@ -11,7 +11,7 @@ layout: default
         <br><br>
         <h1 class="header center text-secondary-color">{{ site.title }}</h1>
         <div class="row center">
-            <h5 class="header col s12 light">Let's see what happens when a programmer makes real things.</h5>
+            <h5 class="header col s12 light">{{ site.description }}</h5>
         </div>
         <div class="row center">
             <a href="{{ "/about" | prepend: site.baseurl }}"
@@ -29,7 +29,7 @@ layout: default
             <div class="card z-depth-2 hoverable">
                 <div class="card-image">
                     {% if post.image %}
-                        <img src="{{ post.image | prepend: "assets/" | prepend: site.baseurl }}">
+                        <img src="{{ post.image | prepend: "/assets/" | prepend: site.baseurl }}">
                     {% else %}
                         <img src="https://unsplash.it/800/450?blur">
                     {% endif %}
