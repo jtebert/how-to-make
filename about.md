@@ -4,5 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+![Julia Ebert]({{ site.baseurl }}/assets/imgs/julia-ebert.jpg){: .mini}
 
+I'm Julia Ebert, a second year PhD student in Computer Science at Harvard. I work on bio-inspired swarm robotics in the [Self-Organizing Systems Research Group](https://ssr.seas.harvard.edu/) with Prof. Radhika Nagpal.
+
+Before starting this class, I had rather limited fabrication experience; I recently worked through an Arduino starter kit intended for children, my dad let me play with a jigsaw as a kid, and I can sew Christmas stockings. Instead, my background is primarily in neuroscience and bioengineering, and my current research is focused on the software side of swarm robotics. However, I'm discovering that there are big limits to what I can accomplish if I can't design and build my own hardware. It's going to be hard to take over the world with a robot army if I can't make robots.
+
+You can find out more on [my website](http://juliaebert.com) or check out what I've been making on my [Github](https://github.com/jtebert).

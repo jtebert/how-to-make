@@ -56,7 +56,7 @@ My assembly contains three main parts: a cover with struts to connect to the axl
 
 I also played around with a couple ways to output the model. I tested out OneRender, one of the online cloud rendering apps connected to OnShape. I was a somewhat disappointed with the results - the final image is grainy and low resolution, and its attempt at materials isn't great. In the future, I'll try exporting to Blender and using its materials and rendering system on my own computer.
 
-OnShape also has the ability to create drawings of parts and assemblies, so I made [a drawing of my modeling attempt]({{ site.baseurl }}/assets/week-1/model_drawing.pdf). It looks a heck of a lot better than my initial sketch on paper.
+OnShape also has the ability to create drawings of parts and assemblies, so I made [a drawing of my assembly]({{ site.baseurl }}/assets/week-1/model_drawing.pdf). It looks a heck of a lot better than my initial sketch on paper.
 
 ## Future Modeling
 

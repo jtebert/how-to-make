@@ -11,10 +11,10 @@ layout: default
         <br><br>
         <h1 class="header center text-secondary-color">{{ site.title }}</h1>
         <div class="row center">
-            <h5 class="header col s12 light">Some top-level info about the site or yourself. Coloring book magna deserunt venmo hammock artisan single-origin coffee messenger bag irony narwhal forage.</h5>
+            <h5 class="header col s12 light">Let's see what happens when a programmer makes real things.</h5>
         </div>
         <div class="row center">
-            <a href="{{ "/about" | prepend: site.baseurl }}" id="download-button"
+            <a href="{{ "/about" | prepend: site.baseurl }}"
                class="btn-large waves-effect waves-light">About</a>
         </div>
         <br><br>
@@ -31,7 +31,7 @@ layout: default
                     {% if post.image %}
                         <img src="{{ post.image | prepend: "assets/" | prepend: site.baseurl }}">
                     {% else %}
-                    <img src="https://unsplash.it/800/450?blur">
+                        <img src="https://unsplash.it/800/450?blur">
                     {% endif %}
                     <span class="card-title">
                         {% if post.week %}

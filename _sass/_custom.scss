@@ -1,6 +1,6 @@
 nav .brand-logo {
   font-weight: 300;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .text-primary-color {
@@ -106,6 +106,14 @@ p {
         float: right;
         margin: 0 0 32px 3%;
       }
+    }
+  }
+
+  img.mini {
+    @media #{$medium-and-up} {
+      margin: 0 3% 32px 0;
+      max-width: 280px;
+      float: left;
     }
   }
 
