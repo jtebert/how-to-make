@@ -1,7 +1,7 @@
 ---
-layout: post
+layout: page
+permalink: /typography/
 title:  "Typography"
-week: Week 0
 
 ---
 
@@ -106,7 +106,8 @@ $$
 > **Tip:** Make sure you include MathJax into your publications to render mathematical expression correctly. Your page/template should include something like: 
 
 ```
-<script type="text/javascript" src="https://stackedit.io/libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 ```
 
 # Code

@@ -12,8 +12,8 @@ email: julia@juliaebert.com
 homepage: http://juliaebert.com
 description: > # this means to ignore newlines until "baseurl:"
   Let's see what happens when a programmer makes real things.
-baseurl: "/how-to-make" # the subpath of your site, e.g. /blog
-url: "http://juliaebert.com" # the base hostname & protocol for your site
+baseurl: "/classes/863.17/Harvard/people/julia-ebert" # the subpath of your site, e.g. /blog
+url: "http://fab.cba.mit.edu" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
 
