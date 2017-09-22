@@ -30,7 +30,7 @@ layout: default
     <div class="row">
         {% for post in site.posts %}
         <div class="col s12 m6">
-            <div class="card z-depth-2 hoverable">
+            <div class="card z-depth-2 hoverable large">
                 <div class="card-image">
                     {% if post.image %}
                         <img src="{{ post.image | prepend: "/assets/" | prepend: site.baseurl }}">
