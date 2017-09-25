@@ -57,6 +57,21 @@ I'm really pleased with how the final product turned out. Before plugging it int
 
 ![Completed PCB]({{site.baseurl}}/assets/week-3/final-pcb.jpg){: .materialboxed}
 
-# Programming
+# Programming the Programmer
 
-*To be continued...*
+Programming the board was slightly more confusing than I expected, but mostly since the directions were unclear. When you're programming a programmer, it can be tricky to keep track of what board or programmer the directions are talking about. I started with [these instructions](http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/index.html) but ended up needing to do a little trial and error to make things work, along with help from Rob: 
+
+- Plug your in-progress programmer into a USB extension/port. The red LED should turn on. (In my case, the connection was really finicky and I had to wiggle it around to get it to stay lit up.)
+- *Also* plug your programmer into an already-functional programmer via the 6-pin header. (To work with the compiled version of the firmware, this should be a fab-made programmer, not the Atmel one or something else.) The pins have to line up here. In the case of all the fab-made programmers, the #1 pin is always on the bottom left. The already-functional programmer should also be plugged into the computer via USB.
+- After unpacking the [firmware](http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/fts_firmware_bdm_v1.zip), run `make` and then `make flash` to send the new program to your in-progress programmer via the already-functional programmer.
+- Run `make fuses` to set the fuses on the in-progress programmer.
+- Unplug the already-functional programmer and check that the in-progress programmer is detected on USB using `lsusb`. The in-progress programmer should show up as `Multiple Vendors USBtiny`.
+- Now de-solder the jumper on the in-progress programmer.
+- To test your new programmer:
+  - Find a different programmable board to test your programmer with. Plug it into a USB power supply (instead of the computer, so the computer doesn't get confused).
+  - Connect the programmable board to your programmer via the 6-pin header.
+  - Run `avrdude -c usbtiny -p t45`, and it should give a response that you are connected.
+  
+When I tried this, I made two significant mistakes. First, I tried using the Atmel programmer that was sitting next to the computer (and of course, when I tried to run `make flash` it threw a bunch of errors at me.)
+
+Second, when testing my new programmer, I misinterpreted connecting it to a "working board" as Rob described in his instructions. So I still had it connected to the already-functional programmer. This meant that `avrdude -c usbtiny -p t45` threw errors, because it couldn't connect and program a programmer. When I connected it to the board meant to be used for this test, it worked just peachily. When I connected the programmer, the red light lit up (getting power), and the green light flashed based on the signal sent by the connected board.
