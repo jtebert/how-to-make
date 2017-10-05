@@ -112,9 +112,15 @@ p {
   }
 
   img.medium {
-    max-width: 700px;
+    width: 700px;
+    max-width: 100%;
     display: block;
     margin: auto;
+    &.materialboxed.active {
+      width: 100%;
+      max-width: inherit;
+      //max-width: 100%;
+    }
   }
 
   img, iframe, video {
