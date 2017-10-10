@@ -56,12 +56,12 @@ I enlisted the help of my friend [Clark Teeple](http://clarkteeple.weebly.com/) 
 
 ## Motors
 
-Clark also helped me figure out what motors to try; that list of motors is really intimidating. We went through some back of the envelope calculations. First, we estimate how fast we'll need the motor to turn. I started with the estimate of wanting a robot to go up to $v=1 \text{ m/s}$. From the size of the tread guides, we also have $r=17\text{ mm}$. We can calculate the angular velocity:
+Clark also helped me figure out what motors to try; that list of motors is really intimidating. We went through some back of the envelope calculations. First, we estimate how fast we'll need the motor to turn. I started with the estimate of wanting a robot to go up to \\(v=1 \text{ m/s}\\). From the size of the tread guides, we also have \\(r=17\text{ mm}\\). We can calculate the angular velocity:
 $$
 \omega = \frac{v}{r} = \frac{1\text{ m/s}}{0.017\text{ m}} = 58.5 \text{ rad/s} \approx 560 \text{ rpm}
 $$
 
-This is the speed you'd need assuming there's no torque -- that you have a weightless robot. The robot will be pretty light, but it's still best to round up from there to figure out how fast of a motor to get. From the available options here, this makes the $625 \text{ rpm}$ option look best. But how much force can this handle? The stall torque for all of the $625 \text{ rpm}$ motors is $15 \text{ oz-in}$ (do people actually use these units?), which more usefully is $0.106 \text{ Nm}$. To figure out the force at the tread, we use our tread radius as the moment arm:
+This is the speed you'd need assuming there's no torque -- that you have a weightless robot. The robot will be pretty light, but it's still best to round up from there to figure out how fast of a motor to get. From the available options here, this makes the \\(625 \text{ rpm}\\) option look best. But how much force can this handle? The stall torque for all of the \\(625 \text{ rpm}\\) motors is \\(15 \text{ oz-in}\\) (do people actually use these units?), which more usefully is \\(0.106 \text{ Nm}\\). To figure out the force at the tread, we use our tread radius as the moment arm:
 $$
 \frac{0.106\text{ Nm}}{0.017\text{ m}} = 6.23 \text{ N}
 $$
@@ -71,13 +71,13 @@ $$
 \frac{6.23 \text{ N}}{9.8\text{ m/s}} = 635 \text{ g}
 $$
 
-But the robot won't be going straight up. At this point, the ramp slope is $30\deg$, which means only half as much force (a factor of $\cos 30$ is needed to counteract gravity , so the robot can be about $1.27\text{ kg}$.
+But the robot won't be going straight up. At this point, the ramp slope is \\(30\deg\\), which means only half as much force (a factor of \\(\cos 30\\)) is needed to counteract gravity, so the robot can be about \\(1.27\text{ kg}\\).
 
 At this point, we remembered that the robot will actually have two motors, so you'd only need a motor half as powerful, right? But the biggest limitation here is likely not the slope -- it's the fact that robots will be trying to crawl forward with more robots on top of them and pushing them backwards. That means that all of this is just enough to give us an estimate of the motor power. I can start with this and adjust based on my experiments, because the motors should be pretty easy to swap out by unscrewing the bracket.
 
-For the $625\text{ RPM}$ motors, there are both $6\text{ V}$ and $12\text{ V}$ options. The $6\text{ V}$ requires higher current and would be slightly less efficient. But a quick search of my lab's Amazon history showed that people are generally using $7.4\text{ V}$ batteries on their robots, so I'll plan for $6\text{ V}$ motors for now.
+For the \\(625\text{ RPM}\\) motors, there are both \\(6\text{ V}\\) and \\(12\text{ V}\\) options. The \\(6\text{ V}\\) requires higher current and would be slightly less efficient. But a quick search of my lab's Amazon history showed that people are generally using \\(7.4\text{ V}\\) batteries on their robots, so I'll plan for \\(6\text{ V}\\) motors for now.
 
-Finally, there is an option for a double shaft motor or not. The double shaft lets you attach an encoder to measure the velocity of the motor (and estimate position). For future research and analysis, I'd really like to know how fast the robots are moving, so I'll plan for using encoders. Which finally narrows it down to the [0:1 Micro Metal Gearmotor HP 6V with Extended Motor Shaft](https://www.pololu.com/product/2213).
+Finally, there is an option for a double shaft motor or not. The double shaft lets you attach an encoder to measure the velocity of the motor (and estimate position). For future research and analysis, I'd really like to know how fast the robots are moving, so I'll plan for using encoders. Which finally narrows it down to the [50:1 Micro Metal Gearmotor HP 6V with Extended Motor Shaft](https://www.pololu.com/product/2213).
 
 I'll probably come back to this more in the week when we look at output and motors.
 
@@ -100,17 +100,19 @@ Here are the electronics components that at this point I think I'll need:
 - Motor driver (h-bridge): [TB6612FNG Dual Motor Driver Carrier](https://www.pololu.com/product/713). This one can drive two motors, and it specifically says that it will work with the motors I'm planning to use. Depending on how many other small parts I end up with, I could end up making my own PCB that incorporates the voltage regulators, h-bridge, maybe something for force sensing, and whatever other electronics don't directly connect to the Pi.
 - Motor encoders (2): [Magnetic Encoder Pair Kit for Micro Metal Gearmotors, 12 CPR, 2.7-18V (HPCB compatible)](https://www.pololu.com/product/3081)
 
+---
+
 ## Parts List
 
 This is based on the parts I've identified so far, and I'll update this as I go. The total per-robot price is inching up, but it's still well within what's considered low-cost robotics.
 
 Item     | Quantity | Price per unit | Total Price
 -------- | ---------|----------------|------------
-[Raspberry Pi Zero W](https://www.adafruit.com/product/3400) | 1 | \$10.00 | $10.00
-[Motors](https://www.pololu.com/product/2213) | 2 | \$16.95 | $33.90
-[Extended motor brackets](https://www.pololu.com/product/1089) | 1 | \$4.95 | 4.95
-[Tracks](https://www.pololu.com/product/3033) | 1 | \$14.95 | $14.95
-[Motor driver](https://www.pololu.com/product/713) | 1 | \$4.95 | $4.95
-[Motor encoders](https://www.pololu.com/product/3081) | 1 | \$8.95 | $8.95
-[Battery](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | \$17.99 | $9.00
-| | | **$86.70**
+[Raspberry Pi Zero W](https://www.adafruit.com/product/3400) | 1 | $10.00 | $10.00
+[Motors](https://www.pololu.com/product/2213) | 2 | $16.95 | $33.90
+[Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | 4.95
+[Tracks](https://www.pololu.com/product/3033) | 1 | $14.95 | $14.95
+[Motor driver](https://www.pololu.com/product/713) | 1 | $4.95 | $4.95
+[Motor encoders](https://www.pololu.com/product/3081) | 1 | $8.95 | $8.95
+[Battery](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | $17.99 | $9.00
+| | **TOTAL:** | **$86.70**

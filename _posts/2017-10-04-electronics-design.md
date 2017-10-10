@@ -51,4 +51,40 @@ Soldering the board also went quicker than electronics production week, as I'm g
 
 # Programming and Testing
 
-I did a quick beep test with the multimeter, which I used to check that my ground wires were all connected and didn't seem to be shorting anything else. I'm still a little uncertain on whether I put my LEDs in backwards, but I'll find that one out if they fail when I try to light them up.
+The class website was really unclear on how to actually program and communicate with the board, but with the help of Rob and our TA Brian Plancher, we finally figured out all of the pieces. I thought I'd share it here so others wouldn't have to go through that confusion. These directions are based on using a Linux machine with all the necessary software installed that's described [last week](http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/index.html). I used the Chromebox running Gallium in the Harvard SC102 shop (next to the Formlabs printer).
+
+## Connections
+
+- Connect your programmer (from last week) to the computer by USB.
+- Connect your Hello World board to an FTDI cable, plug the FTDI cable into USB on the computer. (The board is powered through the FTDI header, so you need to do this to program it, even though you're not talking to the board by FTDI yet.) **Before you plug your board into the FTDI cable:** check the orientation of the FTDI pins. Pins 1 and 3 are VCC and GND, so you can use a voltmeter (multi-meter) to check that you see 5 V between these pins. (Your FTDI cable needs to be connected to USB power, and you have to plug in some header pins into the FTDI end to touch to the multi-meter.)
+- Connect the Hello World board to your programmer with the 6-pin header cable. (Make sure you're matching pins - e.g., ground connected to ground.) The red LED on your programmer should light up.
+
+## Programming your Hello World board
+
+You'll need to download the [C program](http://academy.cba.mit.edu/classes/embedded_programming/hello.ftdi.44.echo.c) and the [Makefile](http://academy.cba.mit.edu/classes/embedded_programming/hello.ftdi.44.echo.c.make) to program your board. You can look at the makefile to see the different command options it can run.
+
+- Open a terminal and navigate to the directory where you downloaded the program files. (Use the `cd` command in Mac/Linux.)
+- Check that your programmer and Hello World board are connected and detected with `lsusb`.  The programmer should show up as something like `Multiple Vendors USBTiny` and the FTDI cable as `Future Technology Devices International ...`.
+- Compile the program: `make -f hello.ftdi.44.echo.c.make`.
+  `-f` tells `make` which file to use as the makefile.
+  This will create a `.hex` file that can be sent to your board.
+- Send the file to your Hello World board: `make -f hello.ftdi.44.echo.c.make program-usbtiny`
+- Set the clock on your Hello World board: `make -f hello.ftdi.44.echo.c.make program-usbtiny-fuses`
+
+At this point, your board should be fully programmed, so go ahead and disconnect the programmer from your board and from the computer.
+
+## Communicating with your Hello World board
+
+- Download the [Python terminal](http://academy.cba.mit.edu/classes/embedded_programming/term.py) for communicating with your board through the FTDI header.
+- Check what port your Hello World board is connected to. Look at the output of `ls /dev`. This shows the devices connected to your computer. There should be one listed as something like `ttyUSB0` (or some other number at the end). That's your board.
+- From the directory where you downloaded the terminal, run `sudo python term.py /dev/ttyUSB0 115200` (or wherever you determined your board is connected). The `115200` is the baudrate of the device, which was set with the `program-usbtiny-fuses` command we ran earlier.
+- A terminal window should pop up. Type a single character, and you should see a response from your board like this: `you typed "a"`. If you want to reset the list of characters, unplug your board from the FTDI header. (If you unplug the cable from the computer, the `/dev/ttyUSB*` location might change.)
+
+## Troubleshooting
+
+There are a lot of places that this can fail along the way. If it does, here are some things (a non-comprehensive list) to check:
+
+- Verify that your devices are connected/detected by the computer with `lsusb`.
+- Check that you have the right permissions to run what you're trying to run. (For example, don't forget to run the serial terminal as root with `sudo`.)
+- Use a voltmeter to check that you're getting power where it needs to go on your board.
+- Use the "beep test" on the multi-meter to check that things that should be connected are, and that you haven't accidentally created any shorts. (Check your soldering if either of these occurs.)
