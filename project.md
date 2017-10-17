@@ -102,6 +102,28 @@ Here are the electronics components that at this point I think I'll need:
 
 ---
 
+# Week 6
+
+![New part compared to old]({{site.baseurl}}/assets/project/print2-2.jpg){: .small .materialboxed}
+
+At the beginning of the week, I printed the update chassis part. It's now significantly larger than the first version, once I've left space for the motors, Pi Zero, and wheel tracks.<br>
+
+![New part bottom]({{site.baseurl}}/assets/project/print2-1.jpg){: .small .materialboxed}
+
+There's now actually stuff on the bottom as well. In the front are blocks for the motors to sit on, with screws holes through from the top for the motor brackets. In the back are mounts for the rear track wheels. They turn freely and are driven by the motors in the front, which makes things easier here. I did my best with the diagrams from Pololu, but I still feel like the front and back wheels won't line up. If not, though, then I can just make an adjustment and reprint!
+
+In the middle there are offsets and screw holes for a Raspberry Pi Zero. Since I've got a couple of these laying around, I could actually verify that these work! The holes are the right size and line up perfectly. It's really simple, but it's super satisfying when something you make actually works with an existing part.<br>
+
+![New part screw holes]({{site.baseurl}}/assets/project/print2-3.jpg){: .small .materialboxed}
+
+Lastly, about those screw holes. The screw holes for the motor bracket and Pi Zero are countersunk from the top of the chassis. But I printed my part upside down again to reduce support material, which means I ended up with support material inside of the holes. You can see some strands here. I don't have the right screws on hand to test that they freely fit through. If not, I could drill through for this prototype and print larger holes on the next version.
+
+Also, totally unrelated to anything important, but when I print the final versions for my project, I want them all to be different colors. (If I can keep doing it on the 3Dwox, there are a lot of colors.) It is kind of practical, since it will help me easily distinguish the robots once I have more than one of them. 
+
+<br>
+
+---
+
 ## Parts List
 
 This is based on the parts I've identified so far, and I'll update this as I go. The total per-robot price is inching up, but it's still well within what's considered low-cost robotics.
