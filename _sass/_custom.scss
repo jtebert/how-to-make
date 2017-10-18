@@ -14,9 +14,14 @@ hr {
   border: 0;
 }
 
+.btn, .btn-large {
+  margin: 16px;
+  vertical-align: center;
+}
+
 .header-image-container {
   width: 100%;
-  max-height: 600px;
+  max-height: 50vh;
   overflow: hidden;
 }
 
