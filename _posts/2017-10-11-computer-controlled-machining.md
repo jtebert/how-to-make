@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Make Something Big"
-#image: "week-5/board-dark.jpg"
+image: "week-6/finished-dark.jpg"
 week: Week 6
 ---
 
