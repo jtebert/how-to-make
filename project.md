@@ -124,7 +124,32 @@ Also, totally unrelated to anything important, but when I print the final versio
 
 ---
 
-## Parts List
+# Week 7
+
+## Sensing and Control
+
+This week I had some great progress on the design thanks to [Jordan Kennedy's](http://fab.cba.mit.edu/classes/863.17/Harvard/people/Jordan-Kennedy/index.html) husband Skyler Rydberg coming on our lab retreat and being willing to spend part of the evening talking engineering. I brought up my issue of how to detect velocity of a robot moving over the top of another robot. It's easy to detect acceleration of a robot, but my challenge is distinguishing [**zero** acceleration and **zero** velocity] from [**zero** acceleration and **non-zero** velocity].
+
+I was hung up on finding some way to use force sensors for this problem, but from Skyler and Nic Carey, I got a better idea: **light!** In this case, each robot has a light on the bottom of it, pointing downwards. Each robot also has a light sensor on the top of it. When a robot moves over the top of another, the bottom robot will detect a change in light intensity as the upper robot moves. With a single light sensor, the lower robot could detect whether or not the upper robot is moving; with two sensors, the lower robot could estimate the velocity of the upper robot by comparing the timing of light intensity peaks.
+
+Using light sensors can also help solve another problem I've had in the back of my mind: *How does the group decide when to start and stop?* My preliminary idea was that robots on top will stop (like is seen in the larvae video), and when the robots below detect no movement above them, they will also stop moving. There are two problems with this:
+
+1. What triggers the robot(s) on top to stop moving? (And correlated, how do you deal with the fact that there are multiple robots on the top that all have to stop?)
+2. Once stopped, how do you trigger the robots to start moving again?
+
+The light sensing can be used as a control signal to determine this behavior. For example, I could use red light as a control signal to tell the robots to stop. If a robot is on top (i.e., no downward force on it and a light sensor clear to the world), shining a red light will signal it to stop moving. This stop will then propagate down through the layers. Conversely, removing this red light (or shining a different color light) will signal the top layer robots to start moving, which will again propagate down to start the entire group moving.
+
+After discussing with Melvin, we refined this approach. First, the plan is to use infrared light instead of visible light, which means much less interference from background light. Second, we'll put two wide angle infrared photodiodes on the top of the chassis. With overlapping visibility cones, we can use parallax to determine the position of the robot on top (and therefore its velocity). We can also use a pattern of infrared light (e.g., flashing) as an external signal to the robots on top without creating problems like visible strobe effects. (Bonus: this also means we have to build a controller.) This ends up being similar to the way that the [Kilobots](https://ssr.seas.harvard.edu/kilobots) are controlled.
+
+At this point, it's also becoming more clear what I'll need in terms of additional electronics. I'll likely make a PCB to incorporate all of my "accessory" electronics, like the h-bridges for the motors, op amps for the photodiodes, and the infrared LED. Mounting things on the limited underbelly of this robot might also prove tricky, so ideally I'd like to be able to mount it directly below the Raspberry Pi using standoffs and the same mounting holes. (Conveniently, this would also center the LED on the bottom of the robot.)
+
+## Simulation
+
+For this class, I'm planning to build and program the physical robots. However, I'll likely be very limited in the number of robots I'll be able to build, and it will be hard to change them once they're built. For another class, though, I've gotten permission to model and simulate this system as a project. In that case, I'll do 2D simulations of larger groups of robots (likely with Pymunk) and can test different parameters of the system, such as weight of the robots, between-robot friction, maximum allowed torque, and shape of the chassis. This should help bootstrap parameter tuning that would be much slower on the physical robots. If time permits, I may also play around with genetic algorithms for design and control of the robot.
+
+---
+
+# Parts List
 
 This is based on the parts I've identified so far, and I'll update this as I go. The total per-robot price is inching up, but it's still well within what's considered low-cost robotics.
 
@@ -132,9 +157,17 @@ Item     | Quantity | Price per unit | Total Price
 -------- | ---------|----------------|------------
 [Raspberry Pi Zero W](https://www.adafruit.com/product/3400) | 1 | $10.00 | $10.00
 [Motors](https://www.pololu.com/product/2213) | 2 | $16.95 | $33.90
-[Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | 4.95
+[Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | $4.95
 [Tracks](https://www.pololu.com/product/3033) | 1 | $14.95 | $14.95
 [Motor driver](https://www.pololu.com/product/713) | 1 | $4.95 | $4.95
 [Motor encoders](https://www.pololu.com/product/3081) | 1 | $8.95 | $8.95
+[Infrared LED](https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/SFH-4050-Z/475-2864-1-ND/2207282) ([alternatives](https://www.digikey.com/products/en/optoelectronics/infrared-uv-visible-emitters/94?k=infrared+led&k=&pkeyword=infrared+led&pv551=45&pv551=47&pv551=49&FV=2dc0ac1%2C4fc0064%2C4fc0461%2C4fc0017%2C4fc005d%2C4fc005e%2C4fc0060%2C89c0029%2C89c002c%2C89c002d%2C89c002f%2C89c0031%2C1f140000%2Cffe0005e%2C1140003&mnonly=0&ColumnSort=-1000009&page=1&quantity=0&ptm=0&fid=0&pageSize=25)) | 1 | $0.96 | $0.96
+[Infrared Photodiode](https://www.digikey.com/product-detail/en/vishay-semiconductor-opto-division/BPW34/751-1015-ND/1681149) ([alternatives](https://www.digikey.com/products/en/sensors-transducers/optical-sensors-photodiodes/543?k=infrared+photodiode&k=&pkeyword=infrared+photodiode&pv551=43&FV=1140050%2C89c0029%2C89c002b%2C89c002d%2C89c002f%2C1f140000%2Cffe0021f%2Ca0000b%2Ca0000c%2Ca0018d%2Ca00009&mnonly=0&ColumnSort=0&page=1&quantity=0&ptm=0&fid=0&pageSize=25)) | 2 | $1.21 | $2.42
 [Battery](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | $17.99 | $9.00
-| | **TOTAL:** | **$86.70**
+| | **TOTAL:** | **$90.08**
+
+*Last updated: 2017-10-23* 
+
+<!--
+10+33.9+4.95+14.95+4.95+8.95+0.96+2.42+9
+-->
