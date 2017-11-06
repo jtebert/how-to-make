@@ -149,6 +149,34 @@ For this class, I'm planning to build and program the physical robots. However, 
 
 ---
 
+# Week 8
+
+This week I got called on to talk about my progress, and now I have things I need to change. Mainly:
+
+- Apparently we have to use a microcontroller in the project, which I'm pretty sure was never said before. But there go my Raspberry Pi plans.
+- Neil suggested that I reinvent the wheel. Specifically, I could mold and cast my own treads instead of buying them. Yeah, I guess I could, but the time to design and make them, plus what I can guarantee would be a ton of debugging on the sizing and design makes me think this really isn't worth it.
+- I could make my own motor encoders instead of buying them.
+- Instead of using the $17 Pololu motors, I could use the much cheaper ones that are in the lab.
+
+On that last one, Brian later suggested that I just use the Pololu motors anyway. After seeing the motors in the lab, which are really bulky energy hogs, I'm liking this idea better. Based on my idea of using infrared to control the robots, Brian also suggested that I might be able to control the robots with a regular TV remote control. That would be pretty cool.
+
+Neil cautioned that this type of project often runs into the problem that people don't end up making more than two or so. I guess if you have to reinvent the wheel, stuff like that takes a long time. Based on this, though, there are some simplifications I can make to my project. I think I'll ditch the motor encoders altogether, since I don't have particular plans for them right now.
+
+---
+
+# Week 9
+
+Simplification? Who needs that! I've decided I want to use Arduino for this. Why? Because I can. Also, despite the fact that Neil decries the overhead of the Arduino libraries, it does simplify things a lot, especially stuff like timers. As I end up doing more complicated stuff programming-wise, making the board a more complicated Arduino-compatible PCB will probably end up simplifying my life.
+
+So now I just have to figure out how to make a Fabduino-style board. The big things here are:
+
+- Figuring out what the essentials are that I need on the board for the Arduino functionality. (There seem to be multiple Fabduino tutorials out there, but they don't quite agree or don't have all the information. Maybe I'll start with [this  from 2011](http://fab.cba.mit.edu/classes/863.11/people/tiffany.tseng/fabduino/index.html) or [from 2015](http://fabacademy.org/archives/2015/doc/projects/fabkit-0.4.html) or [2016](http://archive.fabacademy.org/2016/fablabesan2016/students/328/fabduino-build.html).)
+- Adding all my stuff to the Fabduino-style design. I could either leave these as break-out pins so I can modularly add functionality (e.g., motors, LEDs, photodiodes) on separate PCBs. This would mean I don't have to remake the board when I add stuff, but it's not as compact as the alternative of including as much as possible on this single board. And for my current robot design, space is at a premium.
+- Program the bootloader onto the board. Apparently the FabISP doesn't work well for this (according to Yuval), but it's something I should only have to do once for the board. Currently I'm looking at [this tutorial from someone's page last year](http://archive.fabacademy.org/2016/fablabesan2016/students/328/fabduino-bootloading.html).)
+- Program my board with the Arduino IDE.
+
+---
+
 # Parts List
 
 This is based on the parts I've identified so far, and I'll update this as I go. The total per-robot price is inching up, but it's still well within what's considered low-cost robotics.
@@ -159,15 +187,13 @@ Item     | Quantity | Price per unit | Total Price
 [Motors](https://www.pololu.com/product/2213) | 2 | $16.95 | $33.90
 [Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | $4.95
 [Tracks](https://www.pololu.com/product/3033) | 1 | $14.95 | $14.95
-[Motor driver](https://www.pololu.com/product/713) | 1 | $4.95 | $4.95
-[Motor encoders](https://www.pololu.com/product/3081) | 1 | $8.95 | $8.95
 [Infrared LED](https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/SFH-4050-Z/475-2864-1-ND/2207282) ([alternatives](https://www.digikey.com/products/en/optoelectronics/infrared-uv-visible-emitters/94?k=infrared+led&k=&pkeyword=infrared+led&pv551=45&pv551=47&pv551=49&FV=2dc0ac1%2C4fc0064%2C4fc0461%2C4fc0017%2C4fc005d%2C4fc005e%2C4fc0060%2C89c0029%2C89c002c%2C89c002d%2C89c002f%2C89c0031%2C1f140000%2Cffe0005e%2C1140003&mnonly=0&ColumnSort=-1000009&page=1&quantity=0&ptm=0&fid=0&pageSize=25)) | 1 | $0.96 | $0.96
 [Infrared Photodiode](https://www.digikey.com/product-detail/en/vishay-semiconductor-opto-division/BPW34/751-1015-ND/1681149) ([alternatives](https://www.digikey.com/products/en/sensors-transducers/optical-sensors-photodiodes/543?k=infrared+photodiode&k=&pkeyword=infrared+photodiode&pv551=43&FV=1140050%2C89c0029%2C89c002b%2C89c002d%2C89c002f%2C1f140000%2Cffe0021f%2Ca0000b%2Ca0000c%2Ca0018d%2Ca00009&mnonly=0&ColumnSort=0&page=1&quantity=0&ptm=0&fid=0&pageSize=25)) | 2 | $1.21 | $2.42
-[Battery](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | $17.99 | $9.00
-| | **TOTAL:** | **$90.08**
+[Battery (2 pack)](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | $17.99 | $9.00
+| | **TOTAL:** | **$76.18**
 
 *Last updated: 2017-10-23* 
 
 <!--
-10+33.9+4.95+14.95+4.95+8.95+0.96+2.42+9
+10+33.9+4.95+14.95+0.96+2.42+9
 -->
