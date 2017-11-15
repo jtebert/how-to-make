@@ -19,7 +19,7 @@ To start writing my code, I looked at examples from the class website: [hello.ft
 
 # Blink!
 
-<video loop autoplay>
+<video loop autoplay muted>
     <source src="{{site.baseurl}}/assets/week-7/blink.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -37,7 +37,7 @@ Next up: responding to the button. The best way to handle this is probably as an
 
 It took a lot of trial and error to figure out that it was working, especially given the problem I next ran into: my board seems to be haunted. More specifically, the interrupts seem to happen randomly. When I press the button, the interrupt often isn't triggered. But if I touch the board somewhere else or shake it by the cord, the interrupt is triggered. (I started logging to the console via FTDI to track the interrupts.) Sometimes, a huge string of interrupts is spontaneously triggered and the LEDs start strobing. In the event that there was something weird going on with the FTDI header, I tried directly connecting my board to a 3.3 V power supply, touching the ground with one hand, and then poking around the board with my other hand. It didn't help.
 
-<video loop autoplay>
+<video loop autoplay muted>
     <source src="{{site.baseurl}}/assets/week-7/failure.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -56,7 +56,7 @@ According to my Googling, one way to fix this is to add a capacitor to the butto
 
 One last problem I encountered was failing to understand the difference between `PORTB` (used for writing to pins) and `PINB` (used for reading from pins. I got really frustrated that my button presses weren't being detected when I tried to run `get(button_port, button_pin)` instead of `get(button_pins, button_pin)`. I also settled
 
-<video loop autoplay>
+<video loop autoplay muted>
     <source src="{{site.baseurl}}/assets/week-7/success.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>

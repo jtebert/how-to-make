@@ -67,7 +67,7 @@ Rob said that the H-bridges are sensitive, and I may have burnt mine out when I 
   
 Then Rob realized the real problem: these H-bridges require the input voltage for the battery to be ~3 V higher than the reference voltage; both of mine were 5 V. So much for using my cool USB power cord, since USB supplies 5 V. I switched back to the power supply and was able to get the motors to run! I was a little worried about the motors, which seem to run at 6 V. (I tried turning up the voltage, but the motors got pretty hot, which seemed like a good sign that they are not intended to run at 12 V.) I was able to get it working once I got the input power up to ~7.4 V, but not much below that. For now, then, I'm chained to the power supply, but it does mean that I should be able to get this to run on a 7.4 V battery for my project.
 
-<video loop autoplay>
+<video loop autoplay muted>
     <source src="{{site.baseurl}}/assets/week-9/action.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>

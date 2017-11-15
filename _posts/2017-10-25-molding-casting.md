@@ -95,7 +95,7 @@ But how do I attach them. Someone suggested spirit gum, but Google told me this 
 
 *Bonus: Google Photos made an animation of me using my new thumbs!*
 
-<video loop autoplay>
+<video loop autoplay muted>
     <source src="{{site.baseurl}}/assets/week-8/thumbs-animation.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
