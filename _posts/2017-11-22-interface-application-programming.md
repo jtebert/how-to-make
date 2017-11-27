@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Interface and Application Programming"
-#image: "week-12/mini-board-dark.jpg"
+image: "week-12/flappy-screenshot.png"
 week: Week 12
 ---
 
@@ -17,7 +17,7 @@ I know how to program (that feels weird to say after feeling like an impostor in
 
 The first thing I decided to do was invoke masochistic nostalgia and attempt to create an interface in my first programming language: [Racket](https://racket-lang.org/). I haven't touched functional programming since I graduated from undergrad and stopped TAing Northeastern's intro CS class.
 
-Luckily, Racket has a library that makes it easy to interface with serial ports: [libserialport](https://docs.racket-lang.org/libserialport/index.html). In addition to install DrRacket (the IDE for Racket), I installed the `libserialport` module from my terminal with `raco pkg install libserialport`.
+Luckily, Racket has a library that makes it easy to interface with serial ports: [libserialport](https://docs.racket-lang.org/libserialport/index.html). In addition to install DrRacket (the IDE for Racket), I installed the `libserialport` module for Racket (`raco pkg install libserialport` in my terminal) and the Linux library (`sudo apt install libserialport-dev`).
 
 From there, it was surprisingly easy to connect to the serial port and read bytes from it out to the console. I pulled out some code back from when I took this class as a sophomore in undergrad to remember how to do some basic functionality. I've got to say, I was really good at documentation back then (probably because we were heavily graded on it and I was a goody two-shoes). I also looked at Neil's [Python hello world interface code from last week](http://academy.cba.mit.edu/classes/input_devices/light/hello.light.45.py) to understand how to interpret the incoming information from the serial port. As a sanity check, I read out 32 bytes from the port:
 
@@ -25,11 +25,59 @@ From there, it was surprisingly easy to connect to the serial port and read byte
 #"\1\2\3\4\326\3\1\2\3\4\327\3\1\2\3\4\326\3\1\2\3\4\327\3\1\2\3\4\326\3\1\2"
 ```
 
-That looks right. A series of bytes 1, 2, 3, 4, followed by the low byte, then the high byte (0-3), to give a total value for the sensor reading of $$256 \cdot b_\text{high} + b_\text{low}$$.
+Awesome. Then I need to convert these into integers. My approach to this turned out to be kind of hacky, since there isn't a nice built-in function to convert a byte/char to an integer, like the `ord()` function like in Python. So I made my own. 
 
-However, there were two major problems that I realized I was having, after much frustrating debugging:
+``` racket
+;; byte->integer : Byte -> Integer
+;; Convert a byte to an integer
+(define (byte->integer b)
+  (first (bytes->list b)))
+```
 
-1. I couldn't figure out how to flush the buffer before reading from it. This meant an accumulation of data in my serial port buffer that I didn't care about, and my program was very quickly very far behind the buffer in the serial port (since I wasn't reading it at 9600 baud).
-2. I had trouble converting the byte value into an integer. In Python, this was done with the `ord()` function, which converts the 8-bit string (char) into an integer. At first, I read from the serial port using the `read-bytes` method, and was trying to convert this into an integer really clumsily through lists: `(first (bytes->list (read-byte port)))`. This gave me integers, but they weren't the right ones.
+But I'm not gonna lie, it took me a lot of trial and error to get there.
+
+The next problem is reading only the *current* data. At first, I was just always reading the next bytes in the input buffer. But since I'm not calling my read function at 9600 baud, it falls stupidly, uselessy behind really quickly. I needed a way to flush the input buffer in the serial port when I start checking for a value so I'm looking at fresh data to get a reading. I scoured the documentation and failed many ways before eventually resorting to StackOverflow. Lo and behold, [StackOverflow delivered](https://stackoverflow.com/questions/47516364/flush-input-buffer-in-racket/47517053#47517053) in the time it took for me to eat my lunch. I hadn't missed something fundamental; it is actually kind of a pain to do this. The approach is to create a really large local buffer and read values from the input port into this buffer until the input pipe is empty.
+
+``` racket
+(define BUFFER-SIZE 20000)
+
+;; drain-port: InputPort -> InputPort
+;; given a port, allocate a buffer of size 'BUFFER SIZE' and
+;; repeatedly read available bytes or specials until 0
+;; bytes are available.
+(define (drain-port port)
+  (define buf (make-bytes BUFFER-SIZE))
+  (let loop ()
+    (define try-read (read-bytes-avail!* buf port))
+    (cond [(or (eof-object? try-read)
+               (and (number? try-read) (= try-read 0)))
+           port]
+          [else
+           (loop)])))
+```
+
+Those were the two really challenging pieces of the puzzle. From there, creating the interface with the `universe` and `draw` packages was relatively straightforward; I just had to look back at my undergrad problem sets to remember how. I kept it simple here. Like Neil's Python code, I displayed a bar showing the 10-bit value of the sensor. Then I added a button to save the current value and displayed these saved values.
+
+<video loop autoplay muted class="medium">
+    <source src="{{site.baseurl}}/assets/week-12/racket-interface.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+Does this serve any purpose whatsoever? Nope! But I'm pretty proud of myself for remembering how to do basic functional programming and getting this working without a Hello World example.
+
+**[You can download my code here.]({{site.baseurl}}/assets/week-12/interface.rkt)**
 
 # Python
+
+I shamelessly stole an idea from my roommate here and decided to make a version of Flappy Bird controlled by light.
+ 
+I started this at about 9:30 PM on Sunday night (always the best time to start anything, when you have to be up at a reasonable hour on Monday morning) and finished by 1:00 AM. I'm actually pretty proud of that programming speed run. I know Python well, but I haven't really used Pygame much before, which is what I used to make my game. There was a lot of Googling beginner tutorials here. Luckily, Pygame makes it really easy to get a simple game up and running with the use of Sprites. I used sprites to represent my birdy and all of my obstacles, and with groups of Sprites, Pygame can easily automate moving, drawing, collision detection, and removing off-screen obstacles.
+  
+Since Neil also wanted user interaction on the computer, I made it possible to click a button to restart the game when your birdy inevitably hits a wall and dies.
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/week-12/flappy-bird.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+**[Download the code]({{site.baseurl}}/assets/week-12/flappy-python.zip)**
