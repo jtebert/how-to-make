@@ -11,7 +11,11 @@ week: Week 12
 
 ---
 
+![hacked on an extra resistor]({{site.baseurl}}/assets/week-12/hardware-hack.jpg){: .small .right .materialboxed}
+
 I know how to program (that feels weird to say after feeling like an impostor in a computer science PhD program), so this week I decided to make my life more challenging than it had to be.
+
+Before the code, a small hardware aside. Last week [I had an issue with a resistor being to large]({{site.baseurl}}{% post_url 2017-11-15-input-devices %}). This week, I didn't want to venture out in the cold to get a different SMD resistor from the physics lab. So I took the hacky route and just soldered on a $$56~\Omega$$ breadboard resistor, making sure I didn't short out anything else on the board. It's not elegant, but it made it a lot easier to play my Flappy Bird game. (I'm still terrible at it, but now I can't blame the LED power.)
 
 # Racket
 
@@ -72,6 +76,8 @@ Does this serve any purpose whatsoever? Nope! But I'm pretty proud of myself for
 I shamelessly stole an idea from my roommate here and decided to make a version of Flappy Bird controlled by light.
  
 I started this at about 9:30 PM on Sunday night (always the best time to start anything, when you have to be up at a reasonable hour on Monday morning) and finished by 1:00 AM. I'm actually pretty proud of that programming speed run. I know Python well, but I haven't really used Pygame much before, which is what I used to make my game. There was a lot of Googling beginner tutorials here. Luckily, Pygame makes it really easy to get a simple game up and running with the use of Sprites. I used sprites to represent my birdy and all of my obstacles, and with groups of Sprites, Pygame can easily automate moving, drawing, collision detection, and removing off-screen obstacles.
+
+The controls are simpler: brighter light is a higher position for the birdy, and low intensity light is a low birdy position. There wasn't anything particularly challenging about this, since my adventure in Racket helped me understand the Python serial code. The rest was trying out Pygame things until it worked. The program does seem to run pretty slow (you can see the screen tearing in the video below, and that it starts out really fast but then slows down), but I don't know why. Can I just go ahead and blame the serial port reading since that's the part I didn't write?
   
 Since Neil also wanted user interaction on the computer, I made it possible to click a button to restart the game when your birdy inevitably hits a wall and dies.
 
