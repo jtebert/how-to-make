@@ -177,6 +177,18 @@ So now I just have to figure out how to make a Fabduino-style board. The big thi
 
 ---
 
+# Week 13
+
+updated chassis design (fix wheel spacing, different holes for phototransistors)
+
+PCB design with motor control by MOSFETs
+
+issues with holes (not big enough holes for phototransistor wires, not checking available screw sizes first)
+
+initial issues with power (and why it's good to have a power LED)
+
+---
+
 # Parts List
 
 This is based on the parts I've identified so far, and I'll update this as I go. The total per-robot price is inching up, but it's still well within what's considered low-cost robotics.

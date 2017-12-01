@@ -5,7 +5,7 @@ image: "week-12/flappy-screenshot.png"
 week: Week 12
 ---
 
-**Assignment:** write an application that interfaces with an input and/or output device that you made, comparing as many tool options as possible.
+**Assignment:** Write an application that interfaces with an input and/or output device that you made, comparing as many tool options as possible.
 
 <!-- more -->
 
