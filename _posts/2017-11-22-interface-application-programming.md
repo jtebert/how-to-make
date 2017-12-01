@@ -31,18 +31,18 @@ From there, it was surprisingly easy to connect to the serial port and read byte
 
 Awesome. Then I need to convert these into integers. My approach to this turned out to be kind of hacky, since there isn't a nice built-in function to convert a byte/char to an integer, like the `ord()` function like in Python. So I made my own. 
 
-``` racket
+{% highlight racket %}
 ;; byte->integer : Byte -> Integer
 ;; Convert a byte to an integer
 (define (byte->integer b)
   (first (bytes->list b)))
-```
+{% endhighlight %}
 
 But I'm not gonna lie, it took me a lot of trial and error to get there.
 
 The next problem is reading only the *current* data. At first, I was just always reading the next bytes in the input buffer. But since I'm not calling my read function at 9600 baud, it falls stupidly, uselessy behind really quickly. I needed a way to flush the input buffer in the serial port when I start checking for a value so I'm looking at fresh data to get a reading. I scoured the documentation and failed many ways before eventually resorting to StackOverflow. Lo and behold, [StackOverflow delivered](https://stackoverflow.com/questions/47516364/flush-input-buffer-in-racket/47517053#47517053) in the time it took for me to eat my lunch. I hadn't missed something fundamental; it is actually kind of a pain to do this. The approach is to create a really large local buffer and read values from the input port into this buffer until the input pipe is empty.
 
-``` racket
+{% highlight racket %}
 (define BUFFER-SIZE 20000)
 
 ;; drain-port: InputPort -> InputPort
@@ -58,7 +58,7 @@ The next problem is reading only the *current* data. At first, I was just always
            port]
           [else
            (loop)])))
-```
+{% endhighlight %}
 
 Those were the two really challenging pieces of the puzzle. From there, creating the interface with the `universe` and `draw` packages was relatively straightforward; I just had to look back at my undergrad problem sets to remember how. I kept it simple here. Like Neil's Python code, I displayed a bar showing the 10-bit value of the sensor. Then I added a button to save the current value and displayed these saved values.
 

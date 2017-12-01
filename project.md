@@ -186,13 +186,11 @@ Item     | Quantity | Price per unit | Total Price
 [Motors](https://www.pololu.com/product/2213) | 2 | $16.95 | $33.90
 [Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | $4.95
 [Tracks](https://www.pololu.com/product/3033) | 1 | $14.95 | $14.95
-[Infrared LED](https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/SFH-4050-Z/475-2864-1-ND/2207282) ([alternatives](https://www.digikey.com/products/en/optoelectronics/infrared-uv-visible-emitters/94?k=infrared+led&k=&pkeyword=infrared+led&pv551=45&pv551=47&pv551=49&FV=2dc0ac1%2C4fc0064%2C4fc0461%2C4fc0017%2C4fc005d%2C4fc005e%2C4fc0060%2C89c0029%2C89c002c%2C89c002d%2C89c002f%2C89c0031%2C1f140000%2Cffe0005e%2C1140003&mnonly=0&ColumnSort=-1000009&page=1&quantity=0&ptm=0&fid=0&pageSize=25)) | 1 | $0.96 | $0.96
-[Infrared Photodiode](https://www.digikey.com/product-detail/en/vishay-semiconductor-opto-division/BPW34/751-1015-ND/1681149) ([alternatives](https://www.digikey.com/products/en/sensors-transducers/optical-sensors-photodiodes/543?k=infrared+photodiode&k=&pkeyword=infrared+photodiode&pv551=43&FV=1140050%2C89c0029%2C89c002b%2C89c002d%2C89c002f%2C1f140000%2Cffe0021f%2Ca0000b%2Ca0000c%2Ca0018d%2Ca00009&mnonly=0&ColumnSort=0&page=1&quantity=0&ptm=0&fid=0&pageSize=25)) | 2 | $1.21 | $2.42
 [Battery (2 pack)](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | $17.99 | $9.00
-| | **TOTAL:** | **$66.18**
+| | **TOTAL:** | **$62.80**
 
 *Last updated: 2017-10-23* 
 
 <!--
-10+33.9+4.95+14.95+0.96+2.42+9
+33.9+4.95+14.95+9
 -->
