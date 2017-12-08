@@ -179,13 +179,96 @@ So now I just have to figure out how to make a Fabduino-style board. The big thi
 
 # Week 13
 
-updated chassis design (fix wheel spacing, different holes for phototransistors)
+## PCB
 
-PCB design with motor control by MOSFETs
+I made a lot of useful progress on my robot this week. In my post for this week, I talk more about the [stupid PCB designing and mistakes]({{site.baseurl}}/{% post_url 2017-11-29-networking-communications %}) that I made. The big progress here was integrating everything onto a single board. This was also my first venture into using the ATmega328P.
 
-issues with holes (not big enough holes for phototransistor wires, not checking available screw sizes first)
+I started my design with the [Hello World 328p board design](http://academy.cba.mit.edu/classes/embedded_programming/hello.arduino.328P.png), then started adding components for the additional functionality I'll need in my final project: separate input power with a voltage regulator, 2 IR LEDs, 2 IR phototransistors on mini breakout boards, and motor controllers. Apart from my new method of motor control, the added parts all came from things I had done in previous weeks. Neil suggested making our board design modular to make it easier to change things, but I opted not to do that. This is partly because I'm really space-limited by the area on the underside of my robots, and partly because I'll need to make a bunch of these for multiple robots, which I think would make multiple boards per robot more challenging.
 
-initial issues with power (and why it's good to have a power LED)
+In a change from [output week]({{site.baseurl}}/{% post_url 2017-11-01-output-devices %}), I'm now using MOSFETs to control my motors instead of h-bridges. First, I can do this because I only need my motors to run in one direction, so I don't need the h-bridge's ability to reverse the current direction. But the main reason for switching away from h-bridges was that (at least for the ones in our inventory) they required a 2-3 V higher input voltage than reference voltage. The problem was that I was running a 5 V microcontroller and powering my motors off of a 5 V USB power supply.
+
+![project board prototype with area labels]({{site.baseurl}}/assets/week-13/project-board-annotated.jpg){: .medium .materialboxed}
+
+I spent a lot of time laying out the board. I suddenly have a lot more pins and space constraints. I measured out the maximum board size I could fit on the underside of my robot and set that up as the dimensions of my board in Eagle. I then added circles for the screws that I'd already designed into my chassis CAD model. I ended up needing *only* 6 0-Ohm resistors to get everything laid out. I have no idea how far from optimal that is, but it got the job done.
+
+When I first connected my board to my USB power, my power LED didn't turn on. Crap -- where did I screw up? I connected through the FTDI header for power, and the LED lit up veeeeery dimly. That's when I realized that I'd misread the Hello World board design I'd started with and added a 10k resistor between power and ground. But it didn't explain why my USB power wasn't working. My first suspect was the voltage regulating circuit, but it turned out that my board wasn't the problem. For some reason, my hacky USB to 2-pin header from output device week had stopped working. So I sacrificed another USB cable to power my plans to take over the world.
+
+## Chassis
+
+![Chassis V.1.1]({{site.baseurl}}/assets/project/chassis-v.1.1.jpg){: .small .materialboxed}
+
+I also printed an updated chassis (V.1.1) -- this time in bright yellow! I fixed the spacing between the wheels (I'd previously mistakenly made it 80 mm instead of 85 mm) and added holes to put the phototransistors on the top.
+
+I was super pleased that the mini boards I created for the transistor were the perfect size for my boards. I was less pleased that I hadn't accounted for the size of the header pins I was trying to fit through the chassis. I've updated my design for the next print, but for this version it was easy enough to hack it with a power drill.<br>
+
+![Extra material on print]({{site.baseurl}}/assets/project/print-filament.jpg){: .small .materialboxed}
+
+There were a couple of other minor annoyances I ran into on this print. One was the extra filament strung across the various holes by the FDM printer. An exacto knife fixed this for the phototransistor openings, and for the screwholes I smashed my way through with a tiny screwdriver. I don't think there's an easy way around this without using a different printer, but it's pretty minor. The other issue was that I didn't check availability of screw sizes before designing the PCB mount. I designed it with holes for M2.5 screws, from back when I was going to use a Raspberry Pi Zero and never returned to that decision. It turns out that our section lab didn't have M2.5 screws, nor did my lab (in the completely disorganized file cabinet drawer just labeled "hardware"). So I had ended up getting some from a friend in a mechanical engineering robotics lab. *Edit: I found huge bag of M2.5 screws in my lab while looking for something else completely. One less thing to change about my design.*
+
+I attached my PCB, and to my relief the holes actually lined up and I'd measured the maximum board size correctly. I'm still constantly surprised when things I make actually work together, especially on the first try. I was able to compile and run the example blink code for the 328P ([code](http://academy.cba.mit.edu/classes/embedded_programming/hello.arduino.328P.blink.c), [Makefile](http://academy.cba.mit.edu/classes/embedded_programming/hello.arduino.328P.blink.make) with one of my debug LEDs, but that's about as far as I could get without the rest of my robot parts.
+
+---
+
+# Week 14
+
+I have parts! My first pair of motors, brackets, wheels arrived from Pololu (after spending some time wandering through the mailroom, given how long they took to get to me after being delivered). I put it together and it looks like a real robot. Sort of like Pinochio in reverse?
+
+![Misaligned track]({{site.baseurl}}/assets/project/robot-v.1.1.jpg){: .medium .materialboxed}
+
+![Misaligned track]({{site.baseurl}}/assets/project/track-misalignment.jpg){: .small .right .materialboxed}
+
+It was pretty fun to unpack all the parts and have them fit onto my chassis like it was a kit. I was really pleased that my counterbore holes for mounting the motor brackets were exactly the right depth. I also managed to lose one of the tiny nuts as I attempted to assemble things in a bad order at first. But my design still had some issues. The main one was that I'd messed up the calculations of where the motor mount and rear strut needed to go. This means both wheels are too close to the edge. The rear wheel is even further out than the front wheel, making the robot sort of bow-legged. I've updated that in my next design, hopefully correcting the issue. This is tricky, though, since it's trying to pull the right lengths and distances from the datasheets for the motors, brackets, and tracks. Since I don't have models for these, it's tricky to verify that my parts will line up how I want and expect without actually printing out a new chassis. The other major issue that I have (and I'm still not sure I have a solution for) is where to put a battery. I haven't really left space for that, given that the LEDs mean I can't put anything below my PCB.
+
+![V.1.1 underside]({{site.baseurl}}/assets/project/v.1.1-underside.jpg){: .small .materialboxed}
+
+With all the parts assembled, the moment of truth came when I programmed the motor pins to be on and actually plugged in the power. I was paranoid of burning out my shiny new motors, so I started by connecting an old Pololu motor to the board when I powered it on. And I let out the magic smoke! I don't know where it came from, but I quickly realized that I'd plugged my power header in backwards. When I plugged it in correctly, there was no more magic smoke, but things were... jittery.
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/project/jittery-motor.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+![Extra capacitor added]({{site.baseurl}}/assets/project/extra-capacitor.jpg){: .small .materialboxed}
+
+It took quite a bit of debugging to figure out the problem here. My first instinct, unsurprisingly, was that I'd the magic smoke I let out had killed some component on my board. If you look at the video, you can see that the debugging LED is flickering all over the place, while it's supposed to still be blinking on and off every 100 ms. However, if I disconnected the motor, the light blinked correctly. So there's some sort of power issue. After worrying that I had somehow fried part of my microcontroller, the solution turned out to be much simpler. By debugging with the oscilloscope, I could see that the power seemed to be flickering on and off even on my VIN trace (going directly from my power supply to my motors), without going through the microcontroller. My power was inconsistent, which is an easy fix with a capacitor. I had thought to put in a capacitor *after* the voltage regulator, but not on my higher current source. When doing the motor output for output devices week, we'd put in capacitors in parallel with the h-bridge, but for some reason it hadn't occurred to me to do the same here. One more thing to change for the next version of the PCB.
+
+As a temporary solution to my lack of battery space, I taped a USB battery pack to the top of my robot so I could let it roam around. It's not elegant, but look! I made a robot!
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/project/moving-v.1.1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+I also made use of the previous version of my chassis as a test of the robot's climbing ability. It was able to get up and over the robot with a slope of 35 deg. This was before fixing the jittery motor problem, and while using a 5 V USB power source (the motors are rated for 6 V, and could probably handle a bit more), so I'm pretty confident that these motors are strong enough and the robots aren't too steep. So I ordered 10 more of those motors and 5 more sets of brackets and tracks. At this point, I don't really have time for many more rounds of ordering before the project deadline, so I'm taking a leap here on spending my advisor's money.
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/project/climbing-v.1.1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+There remains one big issue with climbing, though: alignment. As shown in the picture below, if two robots are actually both on the same level, the back one won't have any way to start climbing over the front one; the ramp is too high. If I extended the ramp longer and lower, this would limit the angle that the robot could climb itself, such that it would no longer be able to tilt high enough to climb other robots. My potential solution right now is a tail. I piece of thin, flexible rubber will be glued to the top of the ramp and extend past the back down to the ground. This will get under the wheels of the rear robot and allow it to climb without impeding the maximum incline the robot can achieve while climbing itself.
+
+![Vertical alignment problem]({{site.baseurl}}/assets/project/vertical-alignment-problem.jpg){: .medium .materialboxed}
+
+---
+
+# Goals and Next Steps
+
+### Hardware
+
+- Print latest chassis design (V.1.2)
+- Try adding rubber tail to back (make sure it can still climb)
+- Add a power switch somewhere (so I don't have to keep unplugging battery) either on power cord or on board
+- Print/test updated PCB
+- Make 5 more of them
+
+### Software and Control:
+
+- Test output signal from IR LEDs driving overhead: Is there a clear change in magnitude? Are 2 LEDs and phototransistors useful?
+- Determine whether robot is above and whether it's moving (use debug LEDs, figure out what thresholds need to be)
+- Adjust robot speed (PWM duty cycle) based on whether robot above
+- Use flashing IR signal (communication/networking week) to signal robots to stop (in absence of robot above)
+- Make adjustments to make the robots group/aggregate
 
 ---
 
