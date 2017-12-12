@@ -8,6 +8,20 @@ permalink: /project/
 
 ---
 
+# Index
+
+- [Week 1](#week-1)
+- [Week 4](#week-4)
+- [Week 5](#week-5)
+- [Week 6](#week-6)
+- [Week 7](#week-7)
+- [Week 8](#week-8)
+- [Week 9](#week-9)
+- [Week 13](#week-13)
+- [Week 14](#week-14)
+
+---
+
 # Week 1
 
 ![single initial robot design]({{site.baseurl}}/assets/week-1/model_raw.png){: .small}
@@ -195,9 +209,9 @@ When I first connected my board to my USB power, my power LED didn't turn on. Cr
 
 ## Chassis
 
-![Chassis V.1.1]({{site.baseurl}}/assets/project/chassis-v.1.1.jpg){: .small .materialboxed}
+![Chassis v.1.1]({{site.baseurl}}/assets/project/chassis-v.1.1.jpg){: .small .materialboxed}
 
-I also printed an updated chassis (V.1.1) -- this time in bright yellow! I fixed the spacing between the wheels (I'd previously mistakenly made it 80 mm instead of 85 mm) and added holes to put the phototransistors on the top.
+I also printed an updated chassis (v.1.1) -- this time in bright yellow! I fixed the spacing between the wheels (I'd previously mistakenly made it 80 mm instead of 85 mm) and added holes to put the phototransistors on the top.
 
 I was super pleased that the mini boards I created for the transistor were the perfect size for my boards. I was less pleased that I hadn't accounted for the size of the header pins I was trying to fit through the chassis. I've updated my design for the next print, but for this version it was easy enough to hack it with a power drill.<br>
 
@@ -219,7 +233,7 @@ I have parts! My first pair of motors, brackets, wheels arrived from Pololu (aft
 
 It was pretty fun to unpack all the parts and have them fit onto my chassis like it was a kit. I was really pleased that my counterbore holes for mounting the motor brackets were exactly the right depth. I also managed to lose one of the tiny nuts as I attempted to assemble things in a bad order at first. But my design still had some issues. The main one was that I'd messed up the calculations of where the motor mount and rear strut needed to go. This means both wheels are too close to the edge. The rear wheel is even further out than the front wheel, making the robot sort of bow-legged. I've updated that in my next design, hopefully correcting the issue. This is tricky, though, since it's trying to pull the right lengths and distances from the datasheets for the motors, brackets, and tracks. Since I don't have models for these, it's tricky to verify that my parts will line up how I want and expect without actually printing out a new chassis. The other major issue that I have (and I'm still not sure I have a solution for) is where to put a battery. I haven't really left space for that, given that the LEDs mean I can't put anything below my PCB.
 
-![V.1.1 underside]({{site.baseurl}}/assets/project/v.1.1-underside.jpg){: .small .materialboxed}
+![v.1.1 underside]({{site.baseurl}}/assets/project/v.1.1-underside.jpg){: .small .materialboxed}
 
 With all the parts assembled, the moment of truth came when I programmed the motor pins to be on and actually plugged in the power. I was paranoid of burning out my shiny new motors, so I started by connecting an old Pololu motor to the board when I powered it on. And I let out the magic smoke! I don't know where it came from, but I quickly realized that I'd plugged my power header in backwards. When I plugged it in correctly, there was no more magic smoke, but things were... jittery.
 
@@ -239,7 +253,7 @@ As a temporary solution to my lack of battery space, I taped a USB battery pack 
     Your browser does not support the video tag.
 </video>
 
-I also made use of the previous version of my chassis as a test of the robot's climbing ability. It was able to get up and over the robot with a slope of 35 deg. This was before fixing the jittery motor problem, and while using a 5 V USB power source (the motors are rated for 6 V, and could probably handle a bit more), so I'm pretty confident that these motors are strong enough and the robots aren't too steep. So I ordered 10 more of those motors and 5 more sets of brackets and tracks. At this point, I don't really have time for many more rounds of ordering before the project deadline, so I'm taking a leap here on spending my advisor's money.
+I also made use of the previous version of my chassis as a test of the robot's climbing ability. It was able to get up and over the robot with a slope of 35 deg. This was before fixing the jittery motor problem, and while using a 5 V USB power source (the motors are rated for 6 V, and could probably handle a bit more), so I'm pretty confident that these motors are strong enough and the robots aren't too steep. So I ordered 10 more of those motors and 5 more sets of brackets and tracks. At this point, I don't really have time for many more rounds of ordering before the project deadline, so I'm taking a leap here on spending my advisor's money. (And conveniently, Pololu has a holiday sale on now so I saved $45.)
 
 <video loop autoplay muted>
     <source src="{{site.baseurl}}/assets/project/climbing-v.1.1.mp4" type="video/mp4">
@@ -250,42 +264,115 @@ There remains one big issue with climbing, though: alignment. As shown in the pi
 
 ![Vertical alignment problem]({{site.baseurl}}/assets/project/vertical-alignment-problem.jpg){: .medium .materialboxed}
 
+## Robot v.1.2
+
+Another weekend, another robot. On Friday I made v.1.2, with a new chassis and a new circuit board. Every time I make a new one, I think it'll be the final version for my project, until I inevitably find a mistake.
+
+![Robot v.1.2]({{site.baseurl}}/assets/project/robot-v.1.2.jpg){: .medium .materialboxed}
+
+![List of components]({{site.baseurl}}/assets/project/pcb-components-printout.jpg){: .small .right .materialboxed}
+
+The latest version of the circuit board included fixes for the capacitor across my input power, adding a switch, increasing the clearance between traces and the screw holes, and making the whole thing a little narrower so extra wires won't hit the tracks. It doesn't look much different. That tiny switch is useful, but dang, it's so tiny and wedged in next to the wheel. I have to poke it with a pencil or screwdriver to flip it on and off.
+
+For stuffing my board, I borrowed an idea from Kevin to make the process easier and faster. (His project also involves making multiples of the same board.) I made a document with a table for all of my components (and how many), along with a picture of my board layout for assembly. Then I just add some double-sided tape and stick on all the parts before I start assembly.
+
+![Improved track alignment]({{site.baseurl}}/assets/project/track-alignment-v.1.2.jpg){: .small .materialboxed}
+
+I also printed a new chassis. The biggest changes here were to fix the track alignment issues in v.1.1. Part of this involved moving the rear wheel struts to the outside, which (combined with making the whole thing 5 mm wider) left space for the battery. I also widened the opening phototransistor wires to go through the top (though it turned out this still wasn't quite wide enough -- more drilling!). My initial tests also showed that the robot was rather... rambunctious, so I made the lip on the sides taller to hopefully prevent it from jumping and making a run for it.
+
+And the new version runs! It's now powered by a 7.4 V LiPo battery and the speed of the tracks is controlled with pulse-width modulated signals. It's now a lot smoother and more powerful, and it has no problem climbing up the back of the pseudo-robot with just a short rubber tail. You can also see in this video that I hadn't figured a battery solution yet, so I just wrapped tape around the whole thing. Elegant, I know. Also, maybe it's not the smartest idea to run this on a table where it can go flying off the edge.
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/project/climbing-v.1.2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+![Cleaner robot underside]({{site.baseurl}}/assets/project/underside-v.1.2.jpg){: .small .right .materialboxed}
+
+I invested my Saturday morning into the wiring on the underside, replacing the connections for my motors and phototransistors with 2x2 headers. This is so much cleaner and easier to work with, since I don't keep having to fight around wires. In the picture to the right, you can also see that I've come up with some sort of solution for the battery. It just *barely* fits across the back, but with two important caveats: I had to remove the rear screws for this to fit, and it covers up the back infrared LED. I'm working out a design solution for the screw issue, but thankfully (as I'll describe later), I think I can ditch the back LED from the robot altogether. I think my next iteration for the chassis will be yet another 5 mm wider, as well, because if the battery gets shifted even a little it's hitting the tire tracks.
+
+![Hacky fix for phototransistor circuit]({{site.baseurl}}/assets/project/fixing-phototransistor-circuit.jpg){: .small .materialboxed}
+
+Most of my Saturday, though, was sunk into the depressing task of debugging my phototransistors. This should be straightforward, right? It worked so perfectly for my input devices assignment. But when I connected the FTDI header to my robot's board, the readings out of the sensors were meaningless. The new challenge for me is that bugs can now also be in hardware, not just software. Sometimes, it's both! After much frustration and comparisons (in both code and board) to my previous functional IR sensing, I realized the first problem: I hadn't set up the circuit correctly. My phototransistor had one pin connected to ground, but I'd forgotten to connect the other end to... anything. I had to do some hacky soldering to get things rewired to connect to VCC (though luckily, the trace was nearby).
+
+But it turned out that wasn't my only phototransistor problem. After a few minor code bugs, I encountered one that I'm still stuck on: how to switch between analog input pins. The ATmega328P has a single MUX for analog-to-digital conversion, so it can only read from a single channel at once. That's fine -- I'll just read the value of one sensor, change the ADMUX register to look at the other pin, and read again. Except that it's apparently not that simple. It seems that the change doesn't end up registered to do the readings, so at this point I'm stuck reading from only one sensor until I figure out the right things to Google.  
+
+In the meantime, to test how well the light detection works, I created a dummy robot out of the dead body of robot v.1.1 and my input device board. I stuck the phototransistor on top to test the LEDs on v.1.2, and the LED on the bottom front to test the phototransistors on v.1.2. This also helped me conclude that I could get away with ditching the rear LED. The rear phototransistor will detect the front LED as soon as a robot starts climbing, and the multiple phototransistors are able to detect it until it's almost off the front. It also occured to me that having multiple IR LEDs could make things harder, since the robot on the bottom wouldn't be able to distinguish the sources and could have a harder time determining movement.
+
+![Dummy robot top]({{site.baseurl}}/assets/project/dummy-robot-top.jpg){: .small .materialboxed}
+![Dummy robot bottom]({{site.baseurl}}/assets/project/dummy-robot-bottom.jpg){: .small .right .materialboxed}
+
+## Robot v.1.3
+
+Two robots in one weekend! v.1.3 of the robot has relatively few changes, mostly related to mounting the PCB and battery on the bottom. I ditched the rear mounting screws and added a flat area to stick the battery to with the magic yellow tape. The rear of the PCB now rests on a ledge; it sort of press fits into place. I also finally got the sizing right for the phototransistor holes and refined my wiring procedure for them. Because I got rid of the rear LED, this also means my PCB is short enough to actually fit on a piece of FR4 when I mill it.
+
+![Wiring phototransistors]({{site.baseurl}}/assets/project/phototransistor-wiring-v.1.3.jpg){: .small .materialboxed}
+![Robot v.1.3 underside]({{site.baseurl}}/assets/project/robot-underside-v.1.3.jpg){: .small .right .materialboxed}
+
+![Stack of robot chassis]({{site.baseurl}}/assets/project/robot-stack.jpg){: .small .right .materialboxed}
+
+I wanted to get a sense of how long my battery will last when I'm running the robot. I connected a multimeter across the open switch to measure the current when the robot was running (with motors at 50% PWM duty cycle, the current power). With a \\(1200~\text{mAh}\\) battery and a measured current of \\(0.42~\text{A}\\), I expect a runtime of nearly 3 hours:
+
+$$
+1200~\text{mAh} \cdot \frac{1~\text{A}}{1000~\text{mA}} \cdot \frac{1}{0.42~\text{A}} = 2.86~\text{h} = \text{2:51}
+$$
+
+I should be able to get through the final exam on a single charge. If I'm not running them continuously, hopefully I can get through both the final and open house on that charge. (There's no way I'm bringing 6 LiPo chargers along, so we'll see how far a charge gets me.)
+
+I'm now quickly accumulating a stack of robot bodies (lego C-3PO for scale). I'm now locking in the chassis design for the final project; I don't foresee any changes to it, so I'm starting to just make more of them in preparation for the arrival of all of my motors, wheels, and batteries on Wednesday. I'm not mass-producing my PCBs yet, because I still haven't figured out the phototransistor issue. In case it's a circuit design issue, I don't want to make a bunch of boards with mistakes on them.
+
 ---
 
 # Goals and Next Steps
 
+This is basically my `TODO` list. I've broken it down by hardware and software, which each list roughly in the order they need to be done. I plan to prioritize hardware at this point, because I think it will be easier to do iteration on the software at the last minute if I at least have multiple functional robots I can work with. (At this point, I have ordered the parts to make 6 of them.)
+
 ### Hardware
 
-- Print latest chassis design (V.1.2)
-- Try adding rubber tail to back (make sure it can still climb)
-- Add a power switch somewhere (so I don't have to keep unplugging battery) either on power cord or on board
-- Print/test updated PCB
-- Make 5 more of them
+- Create chassis v.1.3 (5 mm wider, more space for phototransistors, new attachment mechanism for board in back)
+- Create PCB v.1.3 
+- Add rubber tail to back (make sure robot can climb and be climbed)
+- If everything works, make 5 more of them (in as many colors as possible)
 
 ### Software and Control:
 
-- Test output signal from IR LEDs driving overhead: Is there a clear change in magnitude? Are 2 LEDs and phototransistors useful?
-- Determine whether robot is above and whether it's moving (use debug LEDs, figure out what thresholds need to be)
-- Adjust robot speed (PWM duty cycle) based on whether robot above
-- Use flashing IR signal (communication/networking week) to signal robots to stop (in absence of robot above)
+- Test output signal from IR LEDs driving overhead:
+  - Is there a clear change in magnitude with movement?
+  - Are 2 LEDs and phototransistors more useful than 1? (e.g., interference in movement detection, range of detection)
+- Use IR to determine whether robot is above and whether it's moving
+  - Use debug LEDs to check detection
+  - Figure out necessary thresholds for determining movement and presence of robot
+- Adjust robot speed based on robot above:
+  - If robot overhead and moving: slow down
+  - If robot overhead and not moving: stop moving
+  - If no robot overhead: normal speed
+- Use flashing IR signal to signal robots on top to stop:
+  - Fulfill communication/networking week
 - Make adjustments to make the robots group/aggregate
+  - Change relative speeds in each condition
+
+### Other
+
+- Make my composite ramp
+- Create some sort of track to restrict them to 2D movement. (Even just 2x4s might work.)
 
 ---
 
 # Parts List
 
-This is based on the parts I've identified so far, and I'll update this as I go. The total per-robot price is inching up, but it's still well within what's considered low-cost robotics.
+This is the price of parts that aren't available in the lab (i.e., not the 3D printing or PCB components). I am continuously updating this as I go.
 
 Item     | Quantity | Price per unit | Total Price
 -------- | ---------|----------------|------------
 [Motors](https://www.pololu.com/product/2213) | 2 | $16.95 | $33.90
 [Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | $4.95
 [Tracks](https://www.pololu.com/product/3033) | 1 | $14.95 | $14.95
-[Battery (2 pack)](https://smile.amazon.com/gp/product/B0722Y5ZS9/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) | 0.5 | $17.99 | $9.00
-| | **TOTAL:** | **$62.80**
+[Battery (7.4 V, 1200 mAh)](https://smile.amazon.com/gp/product/B071D3N3KZ/ref=oh_aui_detailpage_o02_s00?ie=UTF8&psc=1) | 1 | $9.99 | $9.99
+[Rubber sheet (1/16", 12"x12")](https://smile.amazon.com/gp/product/B01BCMKNW4/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 1/9 | $11.96 | $1.99
+| | **TOTAL:** | **$65.78**
 
 *Last updated: 2017-10-23* 
 
 <!--
-33.9+4.95+14.95+9
+33.9+4.95+14.95+9.99+1.99
 -->
