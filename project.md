@@ -10,19 +10,22 @@ permalink: /project/
 
 # Index
 
-- [Week 1](#week-1)
-- [Week 4](#week-4)
-- [Week 5](#week-5)
-- [Week 6](#week-6)
-- [Week 7](#week-7)
-- [Week 8](#week-8)
-- [Week 9](#week-9)
-- [Week 13](#week-13)
-- [Week 14](#week-14)
+- [Week 1: The Idea](#week-1-the-idea)
+- [Week 4: The First 3D Print](#week-4-the-first-3d-print)
+- [Week 5: The Hardware Design](#week-5-the-hardware-design) ([Mechanical Design](#mechanical-design), [Motors](#motors), [Sensing](#sensing), [Electronics](#electronics))
+- [Week 6: The Chassis Redesign](#week-6-the-chassis-redesign)
+- [Week 7: The Control](#week-7-the-control)
+- [Week 8: The Changes from Neil](#week-8-the-changes-from-neil)
+- [Week 9: The Later-Unused Arduino](#week-9-the-later-unused-arduino)
+- [Week 13: The Circuitry](#week-13-the-circuitry) ([PCB](#pcb), [Chassis](#chassis))
+- [Week 14: The Prototype Iteration](#week-14-the-prototype-iteration) ([Robot v.1.1](#robot-v11), [Robot v.1.2](#robot-v12), [Robot v.1.3](#robot-v13))
+- [Week 15: The Final Countdown](#week-15-the-final-countdown) ([Production](#production), [Video](#video), [Remote Control](#remote-control))
+- [Goals and Next Steps](#goals-and-next-steps)
+- [Parts List](#parts-list)
 
 ---
 
-# Week 1
+# Week 1: The Idea
 
 ![single initial robot design]({{site.baseurl}}/assets/week-1/model_raw.png){: .small}
 
@@ -32,7 +35,7 @@ In the first week, I [proposed a project]({{site.baseurl}}{% post_url 2017-09-06
 
 ---
 
-# Week 4
+# Week 4: The First 3D Print
 
 ![first print of robot cover]({{site.baseurl}}/assets/week-4/cover-top.jpg){: .small .right .materialboxed}
 
@@ -55,7 +58,7 @@ Based on these ideas, I'm currently redesigning the next iteration. It will be l
 
 ---
 
-# Week 5
+# Week 5: The Hardware Design
 
 ## Mechanical Design
 
@@ -116,7 +119,7 @@ Here are the electronics components that at this point I think I'll need:
 
 ---
 
-# Week 6
+# Week 6: The Chassis Redesign
 
 ![New part compared to old]({{site.baseurl}}/assets/project/print2-2.jpg){: .small .materialboxed}
 
@@ -138,7 +141,7 @@ Also, totally unrelated to anything important, but when I print the final versio
 
 ---
 
-# Week 7
+# Week 7: The Control
 
 ## Sensing and Control
 
@@ -163,7 +166,7 @@ For this class, I'm planning to build and program the physical robots. However, 
 
 ---
 
-# Week 8
+# Week 8: The Changes from Neil
 
 This week I got called on to talk about my progress, and now I have things I need to change. Mainly:
 
@@ -178,7 +181,7 @@ Neil cautioned that this type of project often runs into the problem that people
 
 ---
 
-# Week 9
+# Week 9: The Later-Unused Arduino
 
 Simplification? Who needs that! I've decided I want to use Arduino for this. Why? Because I can. Also, despite the fact that Neil decries the overhead of the Arduino libraries, it does simplify things a lot, especially stuff like timers. As I end up doing more complicated stuff programming-wise, making the board a more complicated Arduino-compatible PCB will probably end up simplifying my life.
 
@@ -191,7 +194,7 @@ So now I just have to figure out how to make a Fabduino-style board. The big thi
 
 ---
 
-# Week 13
+# Week 13: The Circuitry
 
 ## PCB
 
@@ -223,7 +226,9 @@ I attached my PCB, and to my relief the holes actually lined up and I'd measured
 
 ---
 
-# Week 14
+# Week 14: The Prototype Iteration
+
+## Robot v.1.1
 
 I have parts! My first pair of motors, brackets, wheels arrived from Pololu (after spending some time wandering through the mailroom, given how long they took to get to me after being delivered). I put it together and it looks like a real robot. Sort of like Pinochio in reverse?
 
@@ -319,7 +324,103 @@ $$
 
 I should be able to get through the final exam on a single charge. If I'm not running them continuously, hopefully I can get through both the final and open house on that charge. (There's no way I'm bringing 6 LiPo chargers along, so we'll see how far a charge gets me.)
 
-I'm now quickly accumulating a stack of robot bodies (lego C-3PO for scale). I'm now locking in the chassis design for the final project; I don't foresee any changes to it, so I'm starting to just make more of them in preparation for the arrival of all of my motors, wheels, and batteries on Wednesday. I'm not mass-producing my PCBs yet, because I still haven't figured out the phototransistor issue. In case it's a circuit design issue, I don't want to make a bunch of boards with mistakes on them.
+I'm now quickly accumulating a stack of robot bodies (Lego C-3PO for scale). I'm now locking in the chassis design for the final project; I don't foresee any changes to it, so I'm starting to just make more of them in preparation for the arrival of all of my motors, wheels, and batteries on Wednesday. I'm not mass-producing my PCBs yet, because I still haven't figured out the phototransistor issue. In case it's a circuit design issue, I don't want to make a bunch of boards with mistakes on them.
+
+![Preparing robot parts]({{site.baseurl}}/assets/project/production-prep.jpg){: .small .materialboxed}
+
+On Monday, there was much rejoicing, because I finally made my phototransistors both works. I don't actually know what I changed or did that fixed the issue. It's really feeling like black magic. After fiddling around with the code and commenting, uncommenting, and cleaning up the code, something finally made it work. I'm a little afraid to touch it now, though, for fear of re-breaking it. But this means my PCB is fine, which means it's time to move into production mode. On Monday I milled and stuffed 2 PCBs, and cut, stripped, and tinned all 80 tiny wires I need to connect my motors and sensors. I also got my sheet of rubber for the ramps in the mail. Now I just keep refreshing the tracking pages in hopes that will make the batteries, wheels, and motors get here faster. (That's definitely how it works.)
+
+I also now have 3 total chassis printed for v.1.3. I decided to try changing the orientation. Previously, I was orienting it upside down when I printed, to reduce the amount of support material. For my 2nd copy of v.1.3, I printed it on its side. And dang, that looks so much nicer. Plus, it only take 5:30 to print instead of 6:30 -- printing that large of a raft is slow.
+
+![Preparing robot parts]({{site.baseurl}}/assets/project/chassis-v.1.3-printing-orientation.jpg){: .materialboxed}
+
+![Preparing robot parts]({{site.baseurl}}/assets/project/chassis-v.1.3-raft-problem.jpg){: .small .materialboxed}
+
+But I have one big problem: the raft. I printed it with the raft after all the dire warnings from the Sindoh software about the material not adhering to the bed. I ended up with a problem of the raft adhering to the part, though. This picture is after I took an exacto knife around all the edges to trim off the excess platform, because that platform material is never coming off the side of the chassis. It seems that the gcode didn't leave a gap between the platform and the part.
+
+So I checked the settings in the Sindoh software and found one that was set to "Airgap: 0.00". Awesome, I'll just change that to 0.20 and we're in business! Nope. I printed my 2rd chassis during the day on Tuesday and had the exact same problem. Back to the exacto knife for the edges and the drill for the axle hole. I'll see if Rob or one of the TAs can help me out tomorrow. After I enlist their help to figure out why I the yellow filament I want to use next won't extrude, and why none of the spools of filament for the 3DWox printer seem to have the right chips with them! (Bonus: one of the two printers is broken right now, so now we all have to compete over the remaining printer, Hunger Games style. Oh man, it 3:30 AM I should go to sleep.)
+
+---
+
+# Week 15: The Final Countdown
+
+## Production
+
+As of Thursday, I am done monopolizing our section's remaining non-broken 3DWox printer, and I managed to use all six colors! By printing sideways and switching from a raft to a brim for bed adhesion, I got the print time down to 4.5 hours for the last few chassis prints (from my original 6.5 hours).
+
+![Boards and batteries ready]({{site.baseurl}}/assets/project/boards-batteries.jpg){: .small .materialboxed}
+
+I also went on a milling and stuffing frenzy to get all 6 of my boards stuffed. And then while trying to check the current draw with the multimeter, I saw smoke and friend one of my boards. Afterwards when I switched it on, the motors and LEDs seemed to be always on at 50%. The program on my microcontroller still seemed to be running (because my debug LEDs still lit up correctly when I put the phototransistors near IR light), but I couldn't program my board. I tried powering the board from USB or a different battery, replacing the voltage regulator, and finally replacing the microcontroller. That last swap let me program my board, but it's still doing the same weird behavior otherwise. I'm at the point where it might be better to just make a new board altogether instead of continuing to debug the hardware on this and turn it into Theseus's circuit board. (Update: I did make a new one. Two new ones, actually, in case I fry another board.)
+
+![Ready for assembly]({{site.baseurl}}/assets/project/pre-assembly.jpg){: .small .right .materialboxed}
+
+My motors and wheels finally arrived on Thursday. I thought it would be painless at that point to get all of my robots put together and running, but I was optimistic. The problem mostly came from my boards, which I'd been too impatient to test when I made all of them. I had 2-3 boards that didn't seem to power on at all, where the cause turned out to be a tiiiiny little spot where the mill didn't fully cut through a trace between power and ground. Another board didn't power on because the mill had gotten aggressive and ripped up the trace between my power input and the switch. And another one wouldn't program, though that seemed to spontaneously resolve itself after much frustrated prodding with a multimeter. Then, after I'd proudly assembled my first robot, I realized that I'd soldered the left motor on backwards to all of my 2x2-header wires. Time to re-solder 5 sets of motors! By the time I got to my last robot, I was on a roll and getting pretty efficient. 
+
+![All the robots]({{site.baseurl}}/assets/project/all-the-robots.jpg){: .materialboxed}
+
+And I made this video of my whole production process (culled from probably hours of footage, by the time I finished).
+
+<video>
+    <source src="{{site.baseurl}}/assets/project/production.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+## Video
+
+I decided to make a slick video of my project, so I've been filming pretty everything on my phone. (Except programming, because that's really boring to watch.) One part of this was taking a picture after every single solder I added to my PCB, which I want to turn into a stopmotion video. I set up my phone on a mini tripod and laid down spike tape to align my board. But there was still a little bit of variation in position, so I [aligned all the images with a tool from Hugin:](https://photo.stackexchange.com/questions/49581/how-to-auto-align-a-stack-of-head-shots)
+
+`align_image_stack -a aligned -C *.jpg`
+
+This will align all of the JPEG images in the current directory, and crop all of them to the same dimensions when it aligns them. The resulting images will be slightly smaller, but that's fine since they're still far larger than the 1920x1080 video that we'll make. This outputs uncompressed TIF images, which are huge. So [we'll use imagemagick](https://photo.stackexchange.com/questions/83155/how-to-align-a-stack-of-images-for-a-timelapse-with-foss-tools) to resize, crop, compress (and in my case rotate) all these TIF images into manageable JPEGs. (You can change how it centers the cropping by changing to something like `-gravity center`.)
+
+`mogrify -resize '1920x1080^' -gravity north -extent 1920x1080 -rotate 180 -format jpg *.tif`
+ 
+We'll [turn these images into a 30 fps video using FFMPEG](http://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/):
+
+`ffmpeg -framerate 30 -r 30 -f image2 -s 1920x1080 -i aligned%04d.jpg -vcodec h264 -crf 25 -pix_fmt yuv420p pcb-stopmotion-1x.mp4`
+
+And then we'll [slow it down](https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video) (maintaining the frame rate for working for other videos):
+
+`ffmpeg -i pcb-stopmotion-1x.mp4 -filter:v "setpts=3.0*PTS" pcb-stopmotion-3x.mp4`
+
+I recorded video of my production process, then edited it together in [Lightworks](https://www.lwks.com/). I haven't used it before, but it works on Linux, is sufficiently powerful, and doesn't crash constantly (I'm looking at you, Kdenlive). The free version only exports 720p video, but for my purposes of small videos on this website, that's good enough. After exporting, I compressed the resulting video (again) with ffmpeg. I used the [two-pass approach from this site](http://www.mpabo.com/2014/12/14/ffmpeg-and-x264-encoding-guide/) to compress to a target file size. My bitrate to achieve this was determined by the target file size (here, 20 MB):
+
+$$20~\text{MB} \times \frac{8192~\text{kB}}{\text{MB}} - 128~\text{kB audio} \approx 1200~\text{k}$$
+
+Then I feed this to ffmpeg:
+
+{% highlight bash %}
+ffmpeg -y -i production-v1.mp4 -c:v h264 -preset medium -b:v 1200k -pass 1 -an -f mp4 /dev/null && \
+ffmpeg -i production-v1.mp4 -strict -2 -c:v h264 -preset medium -b:v 1200k -pass 2 -c:a aac -b:a 128k output.mp4
+{% endhighlight %}
+
+## Remote Control
+
+![Remote control]({{site.baseurl}}/assets/project/remote-control.jpg){: .small .materialboxed}
+
+I'm finally getting back to my networking week work: sending a signal to start or stop all of the robots from a remote controller. I made a remote control board with two buttons and corresponding indicator LEDS: one two send a start signal, one to send a stop signal. It also has a bigger IR LED to send the signal.
+ 
+I defined the values of a byte that correspond to start and stop signals and redirected Neil's `put_char()` function to an LED instead of the FTDI header RX pin. I tested this out blinking accordingly on my controller: if I press the start button, I make the other LED blink with the stop byte signal. So that I could tell what's going on, I slowed down the bit delay to 100 ms. It took some fiddling with my old [Hello World button interrupt code]({{site.baseurl}}/{% post_url 2017-10-18-embedded-programming %}) to get it working for two buttons and play well with the blocking signal sending. All I need to do now for the controller is switch to sending that signal to the IR LED, then verify with my phototransistor board and an FTDI header that it's properly sending the IR signals, and they can be picked up by my phototransistors. Here, I'm sending a byte with the *other* colored LED when I press the start/stop buttons:
+
+<video loop autoplay muted class="medium">
+    <source src="{{site.baseurl}}/assets/project/remote-test-1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+The controller turns out to be easy, compared to receiving the signal. Originally I thought I could similarly adapt the `get_char()` function, but this has two big problems. First, that's assuming reading from a digital pin, whereas my phototransistor input is analog. Second (and by far a harder issue) is that `get_char()` is a blocking function; with the line `while (pin_test(*pins,pin));`, the whole program will wait on a high signal from the pin. This doesn't work for me. It looks like I need to use interrupts to check the pin, and deal with ADC for my input.
+
+My new attempt is going to be attempting to steal (er, I mean, repurpose) the method the Kilobots use to receive IR messages, since the [Kilobot library is publically available](https://github.com/acornejo/kilolib) and they conveniently also use the ATmega328P. The Kilobot library handles this with a timer interrupt that checks for bits. In the interest of supply-side design, though, I'm going to leave this to the side for now and in the meantime opt for a stupid-simple approach: if the light is above a high threshold (higher than you get from a robot passing overhead), the robot will stop moving. If it detects a high light again after a certain timeout delay, it'll start moving. 
+  
+After sleeping on it, I've got a new hacky approach: reuse my timers. I already have a timer in my robot code for setting ticks (a downscaled timer of ~76 ticks per second for tracking things in my main loop like robot velocity). And I'm using a timer to check for button changes in my controller code. Both of these are running on 20 MHz external resonators (although with different microcontrollers). If I get them to have matching clocks, I think I should be able to send values using the interrupt on the controller (setting the LED pin high and low) and read values using the interrupt on the robot (looking at the value from the phototransistor that's read every cycle in the main loop). I don't know how well this will work.
+
+I rewrote both sending on the controller and receiving on the robot to handle messages in the same timer interrupt, changing the LED every 5 ticks (i.e., every 5 interrupt cycles, so it's slow enough that I can see whether it's working). I'm sending a single alternating byte with a start and a stop bit from my controller, and turning on and off the blue LED based on the IR level (above or below threshold) on the front phototransistor. It works!
+
+<video loop autoplay muted class="medium">
+    <source src="{{site.baseurl}}/assets/project/remote-control-test-2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+But interpreting that into a byte is trickier, because I have to get the right framing. The byte detection code in the interrupt will start when it first detects a bit, assuming this is a start bit. But how do I know whether this is actually a start bit, or a bit partway through a message?
 
 ---
 
@@ -327,18 +428,8 @@ I'm now quickly accumulating a stack of robot bodies (lego C-3PO for scale). I'm
 
 This is basically my `TODO` list. I've broken it down by hardware and software, which each list roughly in the order they need to be done. I plan to prioritize hardware at this point, because I think it will be easier to do iteration on the software at the last minute if I at least have multiple functional robots I can work with. (At this point, I have ordered the parts to make 6 of them.)
 
-### Hardware
-
-- Create chassis v.1.3 (5 mm wider, more space for phototransistors, new attachment mechanism for board in back)
-- Create PCB v.1.3 
-- Add rubber tail to back (make sure robot can climb and be climbed)
-- If everything works, make 5 more of them (in as many colors as possible)
-
 ### Software and Control:
 
-- Test output signal from IR LEDs driving overhead:
-  - Is there a clear change in magnitude with movement?
-  - Are 2 LEDs and phototransistors more useful than 1? (e.g., interference in movement detection, range of detection)
 - Use IR to determine whether robot is above and whether it's moving
   - Use debug LEDs to check detection
   - Figure out necessary thresholds for determining movement and presence of robot
@@ -346,15 +437,17 @@ This is basically my `TODO` list. I've broken it down by hardware and software, 
   - If robot overhead and moving: slow down
   - If robot overhead and not moving: stop moving
   - If no robot overhead: normal speed
+  - Figure out default and slow-down speeds (PWM duty cycles)
 - Use flashing IR signal to signal robots on top to stop:
   - Fulfill communication/networking week
 - Make adjustments to make the robots group/aggregate
   - Change relative speeds in each condition
+  - Hope it works...
 
 ### Other
 
-- Make my composite ramp
-- Create some sort of track to restrict them to 2D movement. (Even just 2x4s might work.)
+- Add my production video to this site somewhere
+- Make video of robots in action
 
 ---
 

@@ -55,4 +55,25 @@ Then I clamped it with as many clamps as I could fit on. The clamps started pres
 
 I let my composite cure overnight and de-molded it in the morning. The plastic wrap came off easily from the mold and I'm left with a very sturdy ramp.
 
-There are spots on the edge that don't have epoxy in them. After Neil telling us that it's best to have a high fiber to resin ratio, I guess I skimped on the epoxy. The surface is also uneven; it's definitely thinner (more compressed) where I had the clamps -- more evidence that I should have added a layer to even out the clamping force. 
+There are spots on the edge that don't have epoxy in them. After Neil telling us that it's best to have a high fiber to resin ratio, I guess I skimped on the epoxy. The surface is also uneven; it's definitely thinner (more compressed) where I had the clamps -- more evidence that I should have added a layer to even out the clamping force.
+
+I tested out my ramp with the latest version of my robot (v.1.3), and it can climb it. Going up the gentle (30 deg) slope:
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/week-14/climbing-ramp-gentle.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+And going up the steep (45 deg) slope:
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/week-14/climbing-ramp-steep.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+But it doesn't always make it up the steep slope. Good thing the slope on the back of the robot is only 35 deg. (Also, in these ramp climbing tests the motors here are only running at 25%.)
+
+<video loop autoplay muted>
+    <source src="{{site.baseurl}}/assets/week-14/climbing-ramp-steep-fail.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
