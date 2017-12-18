@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Networking and Communications"
-#image: "week-12/flappy-screenshot.png"
+image: "week-13/remote-control.jpg"
 week: Week 13
 ---
 
@@ -63,3 +63,11 @@ program-usbtiny-fuses: $(PROJECT).hex
 Next up, I have to figure out how to send messages with light. I'll start with some combination of the code for sending serial messages over FTDI (to understanding encoding and decoding messages) and the synchronous light detection code (for turning the light on and off at the right rate, as well as detecting those on/off states). I'm essentially trying to do "serial over infrared," which makes encoding and decoding messages straightforward.
 
 I made some progress on the code for this before I was once again struck down by the chronic cough and mystery illness that's been plaguing me all semester. Since this comes into play for my final project, I'll get back to this over the next couple weeks.
+
+# Getting Back to This...
+
+![Remote control]({{site.baseurl}}/assets/week-13/remote-control.jpg){: .small .materialboxed}
+
+I went back and made some simple version of IR communication for the remote control in my project. Instead of repeating myself here, you can [look at the Remote Control section of my project page]({{site.baseurl}}/project/#remote-control)
+
+**TL;DR:** The remote control sends a single byte (plus start and stop bits) through its IR LED when you press the buttons. The robot receives these in its main loop. Using an interrupt at the same rate as the remote control, it checks for the values of the bits, but I didn't figure out a good way to get the right framing for the bits to identify the correct byte value. So I'm controlling my robots with a binary thresholded IR signal.

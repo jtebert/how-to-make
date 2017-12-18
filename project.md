@@ -10,6 +10,7 @@ permalink: /project/
 
 # Index
 
+- [TL;DR](#tldr)
 - [Week 1: The Idea](#week-1-the-idea)
 - [Week 4: The First 3D Print](#week-4-the-first-3d-print)
 - [Week 5: The Hardware Design](#week-5-the-hardware-design) ([Mechanical Design](#mechanical-design), [Motors](#motors), [Sensing](#sensing), [Electronics](#electronics))
@@ -19,17 +20,49 @@ permalink: /project/
 - [Week 9: The Later-Unused Arduino](#week-9-the-later-unused-arduino)
 - [Week 13: The Circuitry](#week-13-the-circuitry) ([PCB](#pcb), [Chassis](#chassis))
 - [Week 14: The Prototype Iteration](#week-14-the-prototype-iteration) ([Robot v.1.1](#robot-v11), [Robot v.1.2](#robot-v12), [Robot v.1.3](#robot-v13))
-- [Week 15: The Final Countdown](#week-15-the-final-countdown) ([Production](#production), [Video](#video), [Remote Control](#remote-control))
-- [Goals and Next Steps](#goals-and-next-steps)
-- [Parts List](#parts-list)
+- [Week 15: The Final Countdown](#week-15-the-final-countdown) ([Production](#production), [Video](#video), [Remote Control](#remote-control), [Collective Movement](#collective-movement))
+- [Future Work](#future-work)
+- [Parts and Files](#parts-and-files) ([Parts List](#parts-list), [Code](#code), [Design Files](#design-files))
+
+---
+
+# TL;DR
+
+This page is long. Here's a quick summary of the end result.
+
+My goal was to make Overdrive: robots that drive over each other to move together as a group. This is what went into making each of my six robots:
+
+<video controls>
+    <source src="{{site.baseurl}}/assets/project/production.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+I controlled the robots with an infrared remote, and each robot also has an infrared LED on the bottom of it. When a robot senses IR light (from the remote or another robot overhead), it stops moving until the light is gone. The robots move together, even over small obstacles. 
+
+<video muted autoplay loop>
+    <source src="{{site.baseurl}}/assets/project/collective-mvmt-1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 ---
 
 # Week 1: The Idea
 
+For my final project, I am interested in building robots (hopefully more than one) capable of aggregate locomotion. This is based on the locomotion of sawfly larvae (genus *Perreyia*). I first saw this behavior in a video from Smarter Every Day on YouTube:
+
+<iframe src="https://www.youtube.com/embed/YehR0wSUioY" frameborder="0" allowfullscreen class="small"></iframe>
+
+The larvae are moving on top of each other, using the layers below them like the moving walkway at an airport to speed up how fast they are moving. Counterintuitively, this leads to the group as a whole moving much faster than any individual could move on its own. In principle, if there are \\( n \\) layers each with the same number of larvae and each larva is moving with velocity \\(v\\), the velocity of the group as a whole is $$v \cdot \frac{n+1}{2}$$. With 3 layers, that 1.5 times as fast as they could move on their own!
+
+This has some really cool implications for collective swarm robotics: it would allow a group of small, slow robots to move much more quickly between locations. For example, if (in some future world) you have a group of robots collectively constructing a skyscraper, they could move between sites on the tower a lot faster and get a lot more work done.
+
+However, it looks like very little research has been done on this approach to aggregate locomotion, both in biological systems and in robotics. I want to build a simple robot that will be capable of this type of movement in two dimensions, including using detected forces between the individuals to stop and start the group's movement.
+
 ![single initial robot design]({{site.baseurl}}/assets/week-1/model_raw.png){: .small}
 
-In the first week, I [proposed a project]({{site.baseurl}}{% post_url 2017-09-06-cad %}) to create a group of robots that could climb over each other to move faster than a single robot on its own. Knowing nothing about mechanical or electrical engineering, I knew from the start that there would be a lot of changes required to make this thing work - both to get a single robot moving as well as to get the collective behavior I'm looking for.
+In the first week, I [proposed a project]({{site.baseurl}}{% post_url 2017-09-06-cad %}) to create a group of robots that could climb over each other to move faster than a single robot on its own. Knowing nothing about mechanical or electrical engineering, I knew from the start that there would be a lot of changes required to make this thing work - both to get a single robot moving as well as to get the collective behavior I'm looking for. This week I made a very simple, naive model of what I imagined the robots looking like, without having any idea of sizes or what parts I might end up using.
+
+I also made a diagram of what the collective behavior entails (below). Robots on the bottom/lower layers will be slower (purple robots) and end of becoming "uncovered" at the back of the group, at which point they are unburdened by the robots on top of them and are able to start climbing of the back of the group (green robots). The robots on the top (light blue) use those below them as a moving walkway to reach the front and start descending (red). As they descend, they move slower and are eventually pulled under to the bottom layer.
 
 ![group initial robot design]({{site.baseurl}}/assets/week-1/collective-behavior.png)
 
@@ -354,13 +387,13 @@ I also went on a milling and stuffing frenzy to get all 6 of my boards stuffed. 
 
 ![Ready for assembly]({{site.baseurl}}/assets/project/pre-assembly.jpg){: .small .right .materialboxed}
 
-My motors and wheels finally arrived on Thursday. I thought it would be painless at that point to get all of my robots put together and running, but I was optimistic. The problem mostly came from my boards, which I'd been too impatient to test when I made all of them. I had 2-3 boards that didn't seem to power on at all, where the cause turned out to be a tiiiiny little spot where the mill didn't fully cut through a trace between power and ground. Another board didn't power on because the mill had gotten aggressive and ripped up the trace between my power input and the switch. And another one wouldn't program, though that seemed to spontaneously resolve itself after much frustrated prodding with a multimeter. Then, after I'd proudly assembled my first robot, I realized that I'd soldered the left motor on backwards to all of my 2x2-header wires. Time to re-solder 5 sets of motors! By the time I got to my last robot, I was on a roll and getting pretty efficient. 
+My motors and wheels finally arrived on Thursday. I thought it would be painless at that point to get all of my robots put together and running, but I was optimistic. The problem mostly came from my boards, which I'd been too impatient to test when I made all of them. I had 2-3 boards that didn't seem to power on at all, where the cause turned out to be a tiiiiny little spot where the mill didn't fully cut through a trace between power and ground. Another board didn't power on because the mill had gotten aggressive and ripped up the trace between my power input and the switch. And another one wouldn't program, though that seemed to spontaneously resolve itself after much frustrated prodding with a multimeter. Plus there were 1-2 boards where I accidentally plugged in my battery backwards and fried the voltage regulator (though luckily there didn't seem to be other damage). Then, after I'd proudly assembled my first robot, I realized that I'd soldered the left motor on backwards to all of my 2x2-header wires. Time to re-solder 5 sets of motors! By the time I got to my last robot, I was on a roll and getting pretty efficient. 
 
 ![All the robots]({{site.baseurl}}/assets/project/all-the-robots.jpg){: .materialboxed}
 
 And I made this video of my whole production process (culled from probably hours of footage, by the time I finished).
 
-<video>
+<video controls>
     <source src="{{site.baseurl}}/assets/project/production.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -416,44 +449,58 @@ After sleeping on it, I've got a new hacky approach: reuse my timers. I already 
 I rewrote both sending on the controller and receiving on the robot to handle messages in the same timer interrupt, changing the LED every 5 ticks (i.e., every 5 interrupt cycles, so it's slow enough that I can see whether it's working). I'm sending a single alternating byte with a start and a stop bit from my controller, and turning on and off the blue LED based on the IR level (above or below threshold) on the front phototransistor. It works!
 
 <video loop autoplay muted class="medium">
-    <source src="{{site.baseurl}}/assets/project/remote-control-test-2.mp4" type="video/mp4">
+    <source src="{{site.baseurl}}/assets/project/remote-test-2.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
 But interpreting that into a byte is trickier, because I have to get the right framing. The byte detection code in the interrupt will start when it first detects a bit, assuming this is a start bit. But how do I know whether this is actually a start bit, or a bit partway through a message?
 
+## Collective Movement
+
+![Robot track]({{site.baseurl}}/assets/project/robot-track.jpg){: .small .materialboxed}
+
+Alright, I still need to do something to make the robots move together. As a first pass: if a robot detects IR light on either phototransistor, it stops moving. It's not quite a moving walkway or a group speedup, but it's tractable for the time remaining.
+
+First, a sanity check: Can I get a robot to climb over a group of stationary robots (and that ramp from last week)? Because the robots climb *too* well and like to drive off the side of each other, I'm doing everything in a canyon made of boards.
+
+<video loop autoplay muted class="medium">
+    <source src="{{site.baseurl}}/assets/project/stationary-group-climbing.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+![Keeping robots from running away]({{site.baseurl}}/assets/project/pausing-robots.jpg){: .small .materialboxed}
+
+For now, the robots stopped whenever they sense IR, and start moving again 2 s after their last IR detection. This means that if I hold my remote control above the robots while setting up, I can get them all positioned, take away the controller, and have them start. But it doesn't work that nicely, in large part because the IR LED on my remote isn't really powerful enough to cover all the robots at once. So some will start and then get away. It's like herding cats. This picture to the left is how I keep them from all running away while between runs.
+
+I can reduce the threshold for detecting IR, but in the absence of a brighter IR LED, I still need a more robust solution. I'm adding a state to the robots. Now, once they're turned on, they won't start moving until they detect IR for the first time. I'm now experiencing the thrill of creating reprogramming all of the robots individually with every change that I make.
+
+The added state solution ended up being fairly straightforward. In order to get the robots to stop (and not have to turn them all off and on again for another run), I also added a timer that they'll return to the initialization state after running for 15 s.
+
+And now (drum roll, please) it works!
+
+<video muted autoplay loop>
+    <source src="{{site.baseurl}}/assets/project/collective-mvmt-1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
 ---
 
-# Goals and Next Steps
+# Future Work
 
-This is basically my `TODO` list. I've broken it down by hardware and software, which each list roughly in the order they need to be done. I plan to prioritize hardware at this point, because I think it will be easier to do iteration on the software at the last minute if I at least have multiple functional robots I can work with. (At this point, I have ordered the parts to make 6 of them.)
+This is what I want to do with the robots that I didn't accomplish for the project.
 
-### Software and Control:
-
-- Use IR to determine whether robot is above and whether it's moving
-  - Use debug LEDs to check detection
-  - Figure out necessary thresholds for determining movement and presence of robot
-- Adjust robot speed based on robot above:
-  - If robot overhead and moving: slow down
-  - If robot overhead and not moving: stop moving
-  - If no robot overhead: normal speed
-  - Figure out default and slow-down speeds (PWM duty cycles)
-- Use flashing IR signal to signal robots on top to stop:
-  - Fulfill communication/networking week
-- Make adjustments to make the robots group/aggregate
-  - Change relative speeds in each condition
-  - Hope it works...
-
-### Other
-
-- Add my production video to this site somewhere
-- Make video of robots in action
+- Use more powerful (higher gear ratio) motors. This should mean that for the same duty cycle, robots can produce more torque to climb better and will have a lower speed that will improve aggregation.
+- Make infrared serial communication work to remote control the state of the robots.
+- Make robots slow down when underneath another robot, rather than stop completely (requires detecting movement of overhead robot).
+- Create a longer track or figure out how to make them move straighter (and not drive off the sides of each other) so I can look at aggregation over a longer timescale.
 
 ---
 
-# Parts List
+# Parts and Files
 
-This is the price of parts that aren't available in the lab (i.e., not the 3D printing or PCB components). I am continuously updating this as I go.
+## Parts List
+
+This is the price of parts that aren't available in the lab (i.e., not the 3D printing or PCB components).
 
 Item     | Quantity | Price per unit | Total Price
 -------- | ---------|----------------|------------
@@ -461,11 +508,27 @@ Item     | Quantity | Price per unit | Total Price
 [Extended motor brackets](https://www.pololu.com/product/1089) | 1 | $4.95 | $4.95
 [Tracks](https://www.pololu.com/product/3033) | 1 | $14.95 | $14.95
 [Battery (7.4 V, 1200 mAh)](https://smile.amazon.com/gp/product/B071D3N3KZ/ref=oh_aui_detailpage_o02_s00?ie=UTF8&psc=1) | 1 | $9.99 | $9.99
-[Rubber sheet (1/16", 12"x12")](https://smile.amazon.com/gp/product/B01BCMKNW4/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 1/9 | $11.96 | $1.99
-| | **TOTAL:** | **$65.78**
+[Rubber sheet (1/16", 12"x12")](https://smile.amazon.com/gp/product/B01BCMKNW4/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 1/12 | $11.96 | $0.99
+| | **TOTAL:** | **$64.78** 
 
-*Last updated: 2017-10-23* 
+## Code
+
+This is the code as of the project presentation. There are some parts of the code that aren't used (e.g., serial IR communication).
+
+[Robot C code]({{site.baseurl}}/assets/project/robot.328p.c), [Makefile]({{site.baseurl}}/assets/project/robot.328p.make)
+
+[Controller C code]({{site.baseurl}}/assets/project/controller.44.c), [Makefile]({{site.baseurl}}/assets/project/controller.44.make)
+
+## Design Files
+
+These are the versions (v.1.3) used for the final project.
+
+[Robot PCB (Eagle)]({{site.baseurl}}/assets/project/robot-pcb.zip)
+
+[Controller PCB (Eagle)]({{site.baseurl}}/assets/project/controller-pcb.zip)
+
+[Chassis model (STL)]({{site.baseurl}}/assets/project/chassis-v.1.3.stl)
 
 <!--
-33.9+4.95+14.95+9.99+1.99
+33.9+4.95+14.95+9.99+0.99
 -->

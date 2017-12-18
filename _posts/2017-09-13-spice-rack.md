@@ -33,3 +33,10 @@ The crappy wood and pieces getting stuck resulted in a sad ending for one of the
 I already knew the hooks were a weak point, and apparently this is kind of common. Oh well - there's more scap wood, and this is kind of a prototype anyway.
 
 At this point, I ran out of time in Project Night, and they didn't let us use the laser cutters on our own late at night. Until I can get back to the laser cutters, I've got a few sooty parts that will hopefully one day clear out cabinet space in my kitchen.
+
+![Assembling spice rack]({{ site.baseurl }}/assets/week-2/spice-rack-assembly.jpg){: .small .materialboxed}
+
+Eventually I returned and finished cutting my pieces and took it home to assemble. It end up being a pain to fit all those tiny parts together, requiring a rubber mallet borrowed from my roommate. It's not the prettiest spice rack, but it's getting the job done. The biggest problem: I still have too many spices to fit them all in the rack.<br>
+
+![Assembled spice rack]({{ site.baseurl }}/assets/week-2/spice-rack-assembled.jpg){: .small .materialboxed}
+![Spice rack in use]({{ site.baseurl }}/assets/week-2/spice-rack-in-use.jpg){: .small .right .materialboxed}
