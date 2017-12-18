@@ -32,7 +32,7 @@ This page is long. Here's a quick summary of the end result.
 
 My goal was to make Overdrive: robots that drive over each other to move together as a group. This is what went into making each of my six robots:
 
-<video controls>
+<video controls poster="{{site.baseurl}}/assets/project/video-poster.jpg">
     <source src="{{site.baseurl}}/assets/project/production.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -389,11 +389,11 @@ I also went on a milling and stuffing frenzy to get all 6 of my boards stuffed. 
 
 My motors and wheels finally arrived on Thursday. I thought it would be painless at that point to get all of my robots put together and running, but I was optimistic. The problem mostly came from my boards, which I'd been too impatient to test when I made all of them. I had 2-3 boards that didn't seem to power on at all, where the cause turned out to be a tiiiiny little spot where the mill didn't fully cut through a trace between power and ground. Another board didn't power on because the mill had gotten aggressive and ripped up the trace between my power input and the switch. And another one wouldn't program, though that seemed to spontaneously resolve itself after much frustrated prodding with a multimeter. Plus there were 1-2 boards where I accidentally plugged in my battery backwards and fried the voltage regulator (though luckily there didn't seem to be other damage). Then, after I'd proudly assembled my first robot, I realized that I'd soldered the left motor on backwards to all of my 2x2-header wires. Time to re-solder 5 sets of motors! By the time I got to my last robot, I was on a roll and getting pretty efficient. 
 
-![All the robots]({{site.baseurl}}/assets/project/all-the-robots.jpg){: .materialboxed}
+![All the robots]({{site.baseurl}}/assets/project/all-the-robots.jpg){: .medium .materialboxed}
 
 And I made this video of my whole production process (culled from probably hours of footage, by the time I finished).
 
-<video controls>
+<video controls poster="{{site.baseurl}}/assets/project/video-poster.jpg">
     <source src="{{site.baseurl}}/assets/project/production.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
