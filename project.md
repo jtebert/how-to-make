@@ -483,6 +483,13 @@ And now (drum roll, please) it works!
     Your browser does not support the video tag.
 </video>
 
+Plus, on occasion they even end up aggregating to help each other escape. (This made my advisor really excited.) In this particular case, the escaping robot isn't doing so well once it gets out, but hey, it's out!
+
+<video muted autoplay loop>
+    <source src="{{site.baseurl}}/assets/project/escape.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
 ---
 
 # Future Work
